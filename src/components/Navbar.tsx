@@ -2,7 +2,7 @@ import { Flex, Box, Image, Icon, Text } from "@chakra-ui/react"
 import { FaUserGroup } from "react-icons/fa6"
 import { FaChartBar } from "react-icons/fa"
 import { Link } from "react-router-dom"
-function Navbar({ userId }: { userId: number }) {
+function Navbar({ userId, name }: { userId: number; name: string }) {
   return (
     <Flex justify={"center"}>
       <Box
@@ -27,7 +27,7 @@ function Navbar({ userId }: { userId: number }) {
             color={"white"}
             h={"100%"}
           >
-            <Link to={`/?userId=${userId}`}>
+            <Link to={`/?userId=${userId}&name=${name}`}>
               <Box textAlign={"center"} w={"50px"}>
                 <Box
                   display={"flex"}

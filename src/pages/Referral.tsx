@@ -1,6 +1,7 @@
 import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react"
 import Navbar from "../components/Navbar"
 import { useUserData } from "../hooks/useUserData"
+import Spinner from "../components/Spinner"
 
 const referralData = [
   {
@@ -18,9 +19,9 @@ const referralData = [
 ]
 
 function Referral() {
-  const { isLoading, userData } = useUserData()
+  const { isLoading, userData, name } = useUserData()
   if (isLoading) {
-    return <Box color={"white"}>Loading..</Box>
+    return <Spinner />
   }
   return (
     userData && (
@@ -95,7 +96,7 @@ function Referral() {
               ))}
             </Box>
           </Box>
-          <Navbar userId={userData.userId} />
+          <Navbar userId={userData.userId} name={name ? name : ""} />
         </Box>
       </Flex>
     )

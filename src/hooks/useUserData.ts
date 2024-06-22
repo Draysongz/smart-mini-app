@@ -7,16 +7,19 @@ function useUserData() {
   const [userData, setUserData] = useState<DocumentData>()
   const [params] = useSearchParams()
   const [isLoading, setIsLoading] = useState(true)
+  const [name, setName] = useState<string | null>(null)
   useEffect(() => {
     // eslint-disable-next-line no-extra-semi
     ;(async () => {
       try {
         const userId = Number(params.get("userId"))
         const referralId = Number(params.get("referralId"))
+        const firstName = params.get("name")
         if (!userId) return
         const data = await getUserData(userId, referralId)
         if (!data) return
         setUserData(data)
+        setName(firstName)
         setIsLoading(false)
       } catch (error) {
         console.log("useUserData", error)
@@ -26,7 +29,7 @@ function useUserData() {
     return () => {}
   }, [params])
 
-  return { isLoading, userData }
+  return { isLoading, userData, name }
 }
 
 export { useUserData }

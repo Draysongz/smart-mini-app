@@ -32,7 +32,7 @@ function Home() {
   const [screenAxis, setScreenAxis] = useState<
     { x: number; y: number; id: number }[]
   >([])
-  const { isLoading, userData } = useUserData()
+  const { isLoading, userData, name } = useUserData()
 
   const handleTap = async (clientX: number, clientY: number) => {
     if (!userId) return
@@ -130,7 +130,7 @@ function Home() {
       <Flex height="100%" justify="center" overflow={"hidden"} align="center">
         <Box width={["100%", "360px"]} height="100%" bg={"black"}>
           <Box p={5} fontWeight="bold" color="white">
-            Phenomenal
+            {name ? name : ""}
           </Box>
 
           <Box
@@ -226,7 +226,7 @@ function Home() {
               </Box>
             </Box>
           </Flex>
-          <Navbar userId={userData.userId} />
+          <Navbar userId={userData.userId} name={name ? name : ""} />
         </Box>
       </Flex>
     )
