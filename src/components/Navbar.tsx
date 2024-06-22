@@ -34,15 +34,21 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
                   alignItems={"center"}
                   justifyContent={"center"}
                 >
-                  <Image alt="" src="/coin.png" w={"20px"} h={"20px"} />
+                  <Image
+                    alt=""
+                    src="/coin.png"
+                    mt={"3px"}
+                    w={"20px"}
+                    h={"20px"}
+                  />
                 </Box>
-                <Text fontSize={"small"}>Tap</Text>
+                <Text fontSize={""}>Tap</Text>
               </Box>
             </Link>
             <Link to={`/referral?userId=${userId}`}>
               <Box textAlign={"center"} px={4}>
                 <Icon mb={"-5px"} as={FaUserGroup} color={"gray"} />
-                <Text fontSize={"small"}>Ref</Text>
+                <Text fontSize={""}>Ref</Text>
               </Box>
             </Link>
             {/* <Box textAlign={"center"} px={4}>
@@ -52,7 +58,7 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
             <Link to="">
               <Box textAlign={"center"} px={4}>
                 <Icon mb={"-5px"} as={FaChartBar} color={"gray"} />
-                <Text fontSize={"small"}>Stats</Text>
+                <Text fontSize={""}>Stats</Text>
               </Box>
             </Link>
           </Flex>
