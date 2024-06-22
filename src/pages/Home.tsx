@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar"
 import { useUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { serverTimestamp } from "firebase/firestore"
+import Spinner from "../components/Spinner"
 
 const floatUpAndFadeOut = keyframes`
   0% {
@@ -121,7 +122,7 @@ function Home() {
   }
 
   if (isLoading) {
-    return <Box color={"white"}>Loading..</Box>
+    return <Spinner />
   }
 
   return (
