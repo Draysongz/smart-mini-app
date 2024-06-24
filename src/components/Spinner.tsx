@@ -1,16 +1,24 @@
-import { Flex } from "@chakra-ui/react"
-import { ClimbingBoxLoader } from "react-spinners"
+import { Flex, Box, Text } from "@chakra-ui/react"
+import { ClipLoader } from "react-spinners"
 
 function Spinner() {
   return (
     <Flex
-      bg={"gray.900"}
+      bg={"url(/spinner_bg.jpeg)"}
+      bgRepeat={"no-repeat"}
+      bgSize={"cover"}
+      bgPos={"center"}
       h={"100%"}
       overflow={"hidden"}
       justify={"center"}
       align={"center"}
     >
-      <ClimbingBoxLoader color="#3182CE" />
+      <Box textAlign={"center"}>
+        <ClipLoader color="#3182CE" size={70} />
+        <Text color={"white"} fontSize={"25px"} fontWeight={"bold"}>
+          Loading...
+        </Text>
+      </Box>
     </Flex>
   )
 }

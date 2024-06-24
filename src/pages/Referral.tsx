@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react"
 import Navbar from "../components/Navbar"
 import { useUserData } from "../hooks/useUserData"
-import Spinner from "../components/Spinner"
+// import Spinner from "../components/Spinner"
 
 const referralData = [
   {
@@ -19,10 +19,10 @@ const referralData = [
 ]
 
 function Referral() {
-  const { isLoading, userData, name } = useUserData()
-  if (isLoading) {
-    return <Spinner />
-  }
+  const { userData, name } = useUserData()
+  // if (isLoading) {
+  //   return <Spinner />
+  // }
   return (
     userData && (
       <Flex h={"100%"} justify="center" align="center">

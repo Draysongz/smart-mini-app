@@ -1,7 +1,8 @@
 import { Flex, Box, Image, Icon, Text } from "@chakra-ui/react"
 import { FaUserGroup } from "react-icons/fa6"
-import { FaChartBar } from "react-icons/fa"
+import { FaFire } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { BiCoinStack } from "react-icons/bi"
 function Navbar({ userId, name }: { userId: number; name: string }) {
   return (
     <Flex justify={"center"}>
@@ -45,22 +46,30 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
                 <Text fontSize={""}>Tap</Text>
               </Box>
             </Link>
-            <Link to={`/referral?userId=${userId}`}>
+            <Link to={""}>
+              <Box textAlign={"center"} px={4}>
+                <Icon mb={"-5px"} as={FaFire} color={"gray"} />
+                <Text fontSize={"small"}>Boost</Text>
+              </Box>
+            </Link>
+            <Link to={""}>
+              <Box textAlign={"center"} px={4}>
+                <Icon mb={"-5px"} as={BiCoinStack} color={"gray"} />
+                <Text fontSize={"small"}>Earn</Text>
+              </Box>
+            </Link>
+            <Link to={`/referral?userId=${userId}&name=${name}`}>
               <Box textAlign={"center"} px={4}>
                 <Icon mb={"-5px"} as={FaUserGroup} color={"gray"} />
                 <Text fontSize={""}>Ref</Text>
               </Box>
             </Link>
-            {/* <Box textAlign={"center"} px={4}>
-            <Icon mb={"-5px"} as={FaFire} color={"gray"} />
-            <Text fontSize={"small"}>Boost</Text>
-          </Box> */}
-            <Link to="">
+            {/* <Link to="">
               <Box textAlign={"center"} px={4}>
                 <Icon mb={"-5px"} as={FaChartBar} color={"gray"} />
                 <Text fontSize={""}>Stats</Text>
               </Box>
-            </Link>
+            </Link> */}
           </Flex>
         </Box>
       </Box>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Flex, Box, Image, Text, Progress } from "@chakra-ui/react"
+import { Flex, Box, Image, Text, Progress, Icon } from "@chakra-ui/react"
 import { keyframes } from "@emotion/react"
 // import WebApp from "@twa-dev/sdk"
 
@@ -10,6 +10,7 @@ import { useUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { serverTimestamp } from "firebase/firestore"
 import Spinner from "../components/Spinner"
+import { FaUser } from "react-icons/fa6"
 
 const floatUpAndFadeOut = keyframes`
   0% {
@@ -117,7 +118,6 @@ function Home() {
   const calculateLostTime = (): number => {
     const lastUpdate = userData?.lastUpdatedTime.seconds
     const timeNowInSeconds = Date.now() / 1000
-    console.log(timeNowInSeconds)
     return timeNowInSeconds - lastUpdate
   }
 
@@ -130,7 +130,7 @@ function Home() {
       <Flex height="100%" justify="center" overflow={"hidden"} align="center">
         <Box width={["100%", "360px"]} height="100%" bg={"black"}>
           <Box p={5} fontWeight="bold" color="white">
-            {name ? name : ""}
+            {<Icon as={FaUser} />} {name ? name : ""}
           </Box>
 
           <Box
@@ -212,9 +212,9 @@ function Home() {
               overflowY={"hidden"}
             >
               <Box w={["90%", "100%"]} textAlign={"center"}>
-                <Text fontWeight={"bold"} color={"#fff"}>
+                <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
                   {floatingEnergy}/
-                  <Text as={"span"} fontSize={"small"}>
+                  <Text as={"span"} fontSize={"16px"}>
                     {tappingEnergy}
                   </Text>
                 </Text>
