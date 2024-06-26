@@ -44,8 +44,7 @@ async function getUserData(userId: number, name: string, referralId?: number) {
       await createUser(userId, name) // create the user if the user does not exist
       const qs = await getQuerySnapshot(userId)
       const data = qs.docs[0].data()
-      if (referralId) {
-        if (referralId == userId) return null
+      if (referralId && referralId != userId) {
         await updateReferralData(userId, referralId)
       }
       return data
