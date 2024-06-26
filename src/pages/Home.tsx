@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import { Flex, Box, Image, Text, Progress, Icon } from "@chakra-ui/react"
 import { keyframes } from "@emotion/react"
@@ -9,8 +7,9 @@ import Navbar from "../components/Navbar"
 import { useUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { serverTimestamp } from "firebase/firestore"
-import Spinner from "../components/Spinner"
 import { FaUser } from "react-icons/fa6"
+import { FcFlashOn } from "react-icons/fc"
+import { useSearchParams } from "react-router-dom"
 
 const floatUpAndFadeOut = keyframes`
   0% {
@@ -28,12 +27,17 @@ function Home() {
   const [coinsEarned, setCoinsEarned] = useState(0)
   const [tappingEnergy, setTappingEnergy] = useState(0)
   const [tappingPower, setTappingPower] = useState(0)
-  const [userId, setUserId] = useState<number>()
+  const [params] = useSearchParams()
+
+  const userId = Number(params.get("userId"))
+  const referralId = Number(params.get("referralId"))
+  const firstName = params.get("name")
+
+  const { userData, name } = useUserData(userId, firstName, referralId)
 
   const [screenAxis, setScreenAxis] = useState<
     { x: number; y: number; id: number }[]
   >([])
-  const { isLoading, userData, name } = useUserData()
 
   const handleTap = async (clientX: number, clientY: number) => {
     if (!userId) return
@@ -79,7 +83,7 @@ function Home() {
     //setFloatingEnergy(() => userData.floatingTapEnergy)
     // setRefillEnergy(userData.refilEnergy)
     setTappingPower(() => userData.tapPower)
-    setUserId(userData.userId)
+    // setUserId(userData.userId)
     return () => {}
   }, [userData])
 
@@ -119,10 +123,6 @@ function Home() {
     const lastUpdate = userData?.lastUpdatedTime.seconds
     const timeNowInSeconds = Date.now() / 1000
     return timeNowInSeconds - lastUpdate
-  }
-
-  if (isLoading) {
-    return <Spinner />
   }
 
   return (
@@ -211,13 +211,16 @@ function Home() {
               w={["100%", "320px"]}
               overflowY={"hidden"}
             >
-              <Box w={["90%", "100%"]} textAlign={"center"}>
-                <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
-                  {floatingEnergy}/
-                  <Text as={"span"} fontSize={"16px"}>
-                    {tappingEnergy}
+              <Box w={["90%", "100%"]}>
+                <Flex justify={"center"} align={"center"}>
+                  <Icon boxSize={6} mr={"-4px"} as={FcFlashOn} />
+                  <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
+                    {floatingEnergy}/
+                    <Text as={"span"} fontSize={"16px"}>
+                      {tappingEnergy}
+                    </Text>
                   </Text>
-                </Text>
+                </Flex>
                 <Progress
                   rounded={"10px"}
                   value={(floatingEnergy / tappingEnergy) * 100}
