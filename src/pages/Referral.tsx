@@ -1,11 +1,9 @@
 import { Box, Flex, HStack, Icon, Image, Text, Spinner } from "@chakra-ui/react"
 import Navbar from "../components/Navbar"
-import { useUserData } from "../hooks/useUserData"
 import { getQuerySnapshot } from "../helper-functions/getUser"
 import { useEffect, useState } from "react"
 import { DocumentData } from "firebase/firestore"
 import { FaRegCopy } from "react-icons/fa6"
-import { useSearchParams } from "react-router-dom"
 // import Spinner from "../components/Spinner"
 
 // const referralData = [
@@ -33,12 +31,20 @@ async function getRef(userId: number) {
   return data
 }
 
-function Referral() {
-  const [params] = useSearchParams()
-  const userId = Number(params.get("userId"))
-  const referralId = Number(params.get("referralId"))
-  const firstName = params.get("name")
-  const { userData, name } = useUserData(userId, firstName, referralId)
+function Referral({
+  userId,
+  name,
+  userData,
+}: {
+  userId: number
+  name: string | null
+  userData: DocumentData | undefined
+}) {
+  // const [params] = useSearchParams()
+  // const userId = Number(params.get("userId"))
+  // const referralId = Number(params.get("referralId"))
+  // const firstName = params.get("name")
+  // const { userData, name } = useUserData(userId, firstName, referralId)
   const [referredUsers, setReferredUsers] = useState<DocumentData[]>()
 
   useEffect(() => {

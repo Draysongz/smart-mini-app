@@ -6,7 +6,6 @@ import { keyframes } from "@emotion/react"
 import Navbar from "../components/Navbar"
 import { useUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
-import { serverTimestamp } from "firebase/firestore"
 import { FaUser } from "react-icons/fa6"
 import { FcFlashOn } from "react-icons/fc"
 import { useSearchParams } from "react-router-dom"
@@ -63,22 +62,17 @@ function Home() {
     const timeLost = calculateLostTime()
     setCoinsEarned(() => userData.coinsEarned)
     setTappingEnergy(() => userData.tapEnergy)
-    if (
-      Number(
-        Number(
-          userData.floatingTapEnergy + userData.refillEnergy * timeLost
-        ).toFixed(0)
-      ) >= userData.tapEnergy
-    ) {
-      setFloatingEnergy(() => userData.tapEnergy)
+    const energyPerSec = userData.refillEnergy / userData.refillTime
+    const energyLost: number =
+      userData.floatingTapEnergy + energyPerSec * timeLost
+    if (timeLost >= 3) {
+      if (Number(energyLost.toFixed(0)) >= userData.tapEnergy) {
+        setFloatingEnergy(() => userData.tapEnergy)
+      } else {
+        setFloatingEnergy(() => Number(energyLost.toFixed(0)))
+      }
     } else {
-      setFloatingEnergy(() =>
-        Number(
-          Number(
-            userData.floatingTapEnergy + userData.refillEnergy * timeLost
-          ).toFixed(0)
-        )
-      )
+      setFloatingEnergy(() => userData.floatingTapEnergy)
     }
     //setFloatingEnergy(() => userData.floatingTapEnergy)
     // setRefillEnergy(userData.refilEnergy)
@@ -104,11 +98,11 @@ function Home() {
     ;(async () => {
       await updateUserData(userId, {
         floatingTapEnergy: floatingEnergy,
-        lastUpdatedTime: serverTimestamp(),
+        lastUpdatedTime: Date.now() / 1000,
       })
     })()
     return () => {}
-  }, [floatingEnergy])
+  }, [floatingEnergy, userId])
 
   // const showAlert = () => {
   //   // WebApp.showAlert(WebApp.initData)
@@ -120,7 +114,7 @@ function Home() {
   // }
 
   const calculateLostTime = (): number => {
-    const lastUpdate = userData?.lastUpdatedTime.seconds
+    const lastUpdate = userData?.lastUpdatedTime
     const timeNowInSeconds = Date.now() / 1000
     return timeNowInSeconds - lastUpdate
   }

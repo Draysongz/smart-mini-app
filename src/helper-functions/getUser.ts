@@ -7,7 +7,6 @@ import {
   doc,
   updateDoc,
   addDoc,
-  serverTimestamp,
   arrayUnion,
   FieldValue,
   increment,
@@ -73,7 +72,7 @@ async function createUser(userId: number, name: string) {
   const docRef = await addDoc(collection(db, "barni"), {
     coinsEarned: 1000,
     floatingTapEnergy: 1000,
-    lastUpdatedTime: serverTimestamp(),
+    lastUpdatedTime: Date.now() / 1000,
     name,
     referrals: [],
     refillEnergy: 5,

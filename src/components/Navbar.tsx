@@ -4,7 +4,7 @@ import { FaFire } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { BiCoinStack } from "react-icons/bi"
 import { useEffect, useState } from "react"
-function Navbar({ userId, name }: { userId: number; name: string }) {
+function Navbar({ userId, name }: { userId: number; name: string | null }) {
   const [activeTab, setActiveTab] = useState("")
   useEffect(() => {
     const path = location.pathname
@@ -67,7 +67,10 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
                 <Text fontSize={""}>Tap</Text>
               </Box>
             </Link>
-            <Link to={""} onClick={() => setActiveTab("boost")}>
+            <Link
+              to={`/boost?userId=${userId}&name=${name}`}
+              onClick={() => setActiveTab("boost")}
+            >
               <Box
                 textAlign={"center"}
                 px={4}
@@ -79,7 +82,10 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
                 <Text fontSize={"small"}>Boost</Text>
               </Box>
             </Link>
-            <Link to={""} onClick={() => setActiveTab("earn")}>
+            <Link
+              to={`/tasks?userId=${userId}&name=${name}`}
+              onClick={() => setActiveTab("earn")}
+            >
               <Box
                 textAlign={"center"}
                 px={4}

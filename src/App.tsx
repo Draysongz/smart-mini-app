@@ -4,6 +4,7 @@ import Referral from "./pages/Referral"
 import { useUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
+import ComingSoon from "./components/ComingSoon"
 
 function App() {
   const params = new URLSearchParams(location.search)
@@ -11,7 +12,11 @@ function App() {
   const referralId = Number(params.get("referralId"))
   const firstName = params.get("name")
 
-  const { isLoading } = useUserData(userId, firstName, referralId)
+  const { isLoading, userData, name } = useUserData(
+    userId,
+    firstName,
+    referralId
+  )
 
   if (isLoading) {
     return <Spinner />
@@ -25,7 +30,20 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/referral" element={<Referral />} />
+          <Route
+            path="/referral"
+            element={
+              <Referral userId={userId} name={name} userData={userData} />
+            }
+          />
+          <Route
+            path="/boost"
+            element={<ComingSoon userId={userId} name={name} />}
+          />
+          <Route
+            path="/tasks"
+            element={<ComingSoon userId={userId} name={name} />}
+          />
         </Routes>
       </BrowserRouter>
     </ContextProvdider>
