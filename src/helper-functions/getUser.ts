@@ -45,6 +45,7 @@ async function getUserData(userId: number, name: string, referralId?: number) {
       const qs = await getQuerySnapshot(userId)
       const data = qs.docs[0].data()
       if (referralId) {
+        if (referralId == userId) return null
         await updateReferralData(userId, referralId)
       }
       return data
