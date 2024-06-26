@@ -14,6 +14,12 @@ function Navbar({ userId, name }: { userId: number; name: string | null }) {
     if (path.includes("referral")) {
       setActiveTab("ref")
     }
+    if (path.includes("boost")) {
+      setActiveTab("boost")
+    }
+    if (path.includes("tasks")) {
+      setActiveTab("tasks")
+    }
   }, [])
   return (
     <Flex justify={"center"}>

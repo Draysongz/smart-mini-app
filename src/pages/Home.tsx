@@ -21,12 +21,30 @@ const floatUpAndFadeOut = keyframes`
   }
 `
 
+const rotateCoinLeft = keyframes`
+  0% {
+    transform: rotateY(0deg)
+  }
+  100% {
+    transform: rotateY(-20deg)
+  }
+`
+
+const rotateCoinRight = keyframes`
+  0% {
+    transform: rotateY(0deg)
+  }
+  100% {
+    transform: rotateY(-20deg)
+  }
+`
 function Home() {
   const [floatingEnergy, setFloatingEnergy] = useState(0)
   const [coinsEarned, setCoinsEarned] = useState(0)
   const [tappingEnergy, setTappingEnergy] = useState(0)
   const [tappingPower, setTappingPower] = useState(0)
   const [params] = useSearchParams()
+  const [rotateAnim, setRotateAnim] = useState("")
 
   const userId = Number(params.get("userId"))
   const referralId = Number(params.get("referralId"))
@@ -41,9 +59,15 @@ function Home() {
   const handleTap = async (clientX: number, clientY: number) => {
     if (!userId) return
     if (floatingEnergy - tappingPower <= 0) return
+
     setFloatingEnergy((curr) => curr - tappingPower)
     setCoinsEarned((coins) => coins + tappingPower)
     setScreenAxis((prv) => [...prv, { x: clientX, y: clientY, id: Date.now() }])
+    if (clientX < 130) {
+      setRotateAnim(() => rotateCoinLeft)
+    } else if (clientX > 230) {
+      setRotateAnim(() => rotateCoinRight)
+    }
 
     // update coins in db
     // const userId = userData.userId
@@ -155,6 +179,8 @@ function Home() {
                 onTouchStart={async (e) =>
                   await handleTap(e.touches[0].clientX, e.touches[0].clientY)
                 }
+                animation={`${rotateAnim} 0.1s ease `}
+                onAnimationEnd={() => setRotateAnim("")}
               >
                 <Box
                   bg={"rgba(0,0,0,0)"}
