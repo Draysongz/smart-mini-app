@@ -3,7 +3,18 @@ import { FaUserGroup } from "react-icons/fa6"
 import { FaFire } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { BiCoinStack } from "react-icons/bi"
+import { useEffect, useState } from "react"
 function Navbar({ userId, name }: { userId: number; name: string }) {
+  const [activeTab, setActiveTab] = useState("")
+  useEffect(() => {
+    const path = location.pathname
+    if (path == "/") {
+      setActiveTab("home")
+    }
+    if (path.includes("referral")) {
+      setActiveTab("ref")
+    }
+  }, [])
   return (
     <Flex justify={"center"}>
       <Box
@@ -28,8 +39,18 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
             color={"white"}
             h={"100%"}
           >
-            <Link to={`/?userId=${userId}&name=${name}`}>
-              <Box textAlign={"center"} w={"50px"}>
+            <Link
+              to={`/?userId=${userId}&name=${name}`}
+              onClick={() => setActiveTab("home")}
+            >
+              <Box
+                textAlign={"center"}
+                w={"50px"}
+                bg={activeTab == "home" ? "rgba(0,0,0, 0.4)" : ""}
+                rounded={"10px"}
+                px={"8px"}
+                py={"3px"}
+              >
                 <Box
                   display={"flex"}
                   alignItems={"center"}
@@ -46,20 +67,41 @@ function Navbar({ userId, name }: { userId: number; name: string }) {
                 <Text fontSize={""}>Tap</Text>
               </Box>
             </Link>
-            <Link to={""}>
-              <Box textAlign={"center"} px={4}>
+            <Link to={""} onClick={() => setActiveTab("boost")}>
+              <Box
+                textAlign={"center"}
+                px={4}
+                py={"3px"}
+                bg={activeTab == "boost" ? "rgba(0,0,0, 0.4)" : ""}
+                rounded={"10px"}
+              >
                 <Icon mb={"-5px"} as={FaFire} color={"gray"} />
                 <Text fontSize={"small"}>Boost</Text>
               </Box>
             </Link>
-            <Link to={""}>
-              <Box textAlign={"center"} px={4}>
+            <Link to={""} onClick={() => setActiveTab("earn")}>
+              <Box
+                textAlign={"center"}
+                px={4}
+                py={"3px"}
+                bg={activeTab == "earn" ? "rgba(0,0,0, 0.4)" : ""}
+                rounded={"10px"}
+              >
                 <Icon mb={"-5px"} as={BiCoinStack} color={"gray"} />
                 <Text fontSize={"small"}>Earn</Text>
               </Box>
             </Link>
-            <Link to={`/referral?userId=${userId}&name=${name}`}>
-              <Box textAlign={"center"} px={4}>
+            <Link
+              to={`/referral?userId=${userId}&name=${name}`}
+              onClick={() => setActiveTab("ref")}
+            >
+              <Box
+                textAlign={"center"}
+                px={4}
+                py={"3px"}
+                bg={activeTab == "ref" ? "rgba(0,0,0, 0.4)" : ""}
+                rounded={"10px"}
+              >
                 <Icon mb={"-5px"} as={FaUserGroup} color={"gray"} />
                 <Text fontSize={""}>Ref</Text>
               </Box>
