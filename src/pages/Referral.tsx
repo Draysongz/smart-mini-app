@@ -72,7 +72,9 @@ function Referral() {
 
   function handleCopy() {
     try {
-      navigator.clipboard.writeText("Hello")
+      navigator.clipboard.writeText(
+        `https://t.me/barnicoin_bot/?start=${userId}`
+      )
     } catch (err) {
       console.log(err)
     }
