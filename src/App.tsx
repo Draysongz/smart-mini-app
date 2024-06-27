@@ -55,6 +55,10 @@ function App() {
             path="/tasks"
             element={<ComingSoon userId={userId} name={name} />}
           />
+          <Route
+            path="/status"
+            element={<ComingSoon userId={userId} name={name} />}
+          />
         </Routes>
       </BrowserRouter>
     </ContextProvdider>

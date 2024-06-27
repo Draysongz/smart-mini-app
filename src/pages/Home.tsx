@@ -8,8 +8,9 @@ import { useUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { FaUser } from "react-icons/fa6"
 import { FcFlashOn } from "react-icons/fc"
-import { useSearchParams } from "react-router-dom"
-
+import { Link, useSearchParams } from "react-router-dom"
+import { IoIosArrowForward } from "react-icons/io"
+import { TfiCup } from "react-icons/tfi"
 const floatUpAndFadeOut = keyframes`
   0% {
     transform: translateY(0px);
@@ -134,15 +135,6 @@ function Home({
     return () => {}
   }, [floatingEnergy, userId])
 
-  // const showAlert = () => {
-  //   // WebApp.showAlert(WebApp.initData)
-  //   console.log(
-  //     userData,
-  //     userData?.lastUpdatedTime.seconds,
-  //     calculateLostTime()
-  //   )
-  // }
-
   const calculateLostTime = (): number => {
     const lastUpdate = userData?.lastUpdatedTime
     const timeNowInSeconds = Date.now() / 1000
@@ -172,7 +164,19 @@ function Home({
               </Text>
             </Flex>
 
-            <Flex align={"center"} justify={"center"} mt={"50px"} px={5}>
+            <Flex justify={"center"} align={"center"}>
+              <Link to={"status"}>
+                <Flex color={"#fff"} justify={"center"} align={"center"} mt={3}>
+                  <Icon as={TfiCup} mr={2} />
+                  <Text fontSize={"20px"} color={"gray.400"}>
+                    Silver
+                  </Text>
+                  <Icon as={IoIosArrowForward} />
+                </Flex>
+              </Link>
+            </Flex>
+
+            <Flex align={"center"} justify={"center"} mt={"30px"} px={5}>
               <Box
                 bgGradient="linear(to-t, blue.900, blue.600)"
                 h={"280px"}
