@@ -5,7 +5,8 @@ import { useUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
 import ComingSoon from "./components/ComingSoon"
-
+import WebApp from "@twa-dev/sdk"
+import { useEffect } from "react"
 function App() {
   const params = new URLSearchParams(location.search)
   const userId = Number(params.get("userId"))
@@ -17,6 +18,11 @@ function App() {
     firstName,
     referralId
   )
+
+  useEffect(() => {
+    WebApp.expand()
+    WebApp.showAlert(WebApp.initData)
+  }, [])
 
   if (isLoading) {
     return <Spinner />
