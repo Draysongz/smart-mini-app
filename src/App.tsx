@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     WebApp.expand()
-    WebApp.showAlert(WebApp.initData)
   }, [])
 
   if (isLoading) {
