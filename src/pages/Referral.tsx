@@ -4,6 +4,7 @@ import { getQuerySnapshot } from "../helper-functions/getUser"
 import { useEffect, useState } from "react"
 import { DocumentData } from "firebase/firestore"
 import { FaRegCopy } from "react-icons/fa6"
+import { useUserData } from "../hooks/useUserData"
 // import Spinner from "../components/Spinner"
 
 // const referralData = [
@@ -21,20 +22,29 @@ import { FaRegCopy } from "react-icons/fa6"
 //   },
 // ]
 
+async function getRef(userId: number | undefined) {
+  if (!userId) return
+  const qs = await getQuerySnapshot(userId)
+  if (qs.empty) {
+    console.log("User does not exist")
+    return
+  }
+  const data = qs.docs[0].data()
+  return data
+}
+
 function Referral({
   userId,
   name,
-  userData,
 }: {
   userId: number | undefined
   name: string | null
-  userData: DocumentData | undefined
 }) {
   // const [params] = useSearchParams()
   // const userId = Number(params.get("userId"))
   // const referralId = Number(params.get("referralId"))
   // const firstName = params.get("name")
-  // const { userData, name } = useUserData(userId, firstName, referralId)
+  const { userData } = useUserData(userId, name)
   const [referredUsers, setReferredUsers] = useState<DocumentData[]>()
 
   useEffect(() => {
@@ -66,17 +76,6 @@ function Referral({
 
     return () => {}
   }, [userData])
-
-  async function getRef(userId: number | undefined) {
-    if (!userId) return
-    const qs = await getQuerySnapshot(userId)
-    if (qs.empty) {
-      console.log("User does not exist")
-      return
-    }
-    const data = qs.docs[0].data()
-    return data
-  }
 
   function handleCopy() {
     try {

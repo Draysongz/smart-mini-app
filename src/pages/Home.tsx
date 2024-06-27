@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react"
-import { Flex, Box, Image, Text, Progress, Icon } from "@chakra-ui/react"
+import {
+  Flex,
+  Box,
+  Image,
+  Text,
+  Progress,
+  Icon,
+  Spinner,
+} from "@chakra-ui/react"
 import { keyframes } from "@emotion/react"
 // import WebApp from "@twa-dev/sdk"
 
@@ -141,128 +149,130 @@ function Home({
     return timeNowInSeconds - lastUpdate
   }
 
-  return (
-    userData && (
-      <Flex height="100%" justify="center" overflow={"hidden"} align="center">
-        <Box width={["100%", "360px"]} height="100%" bg={"black"}>
-          <Box p={5} fontWeight="bold" color="white">
-            {<Icon as={FaUser} />} {name ? name : ""}
-          </Box>
+  return !userData ? (
+    <Flex height="100%" justify="center" overflow={"hidden"} align="center">
+      <Spinner />
+    </Flex>
+  ) : (
+    <Flex height="100%" justify="center" overflow={"hidden"} align="center">
+      <Box width={["100%", "360px"]} height="100%" bg={"black"}>
+        <Box p={5} fontWeight="bold" color="white">
+          {<Icon as={FaUser} />} {name ? name : ""}
+        </Box>
 
-          <Box
-            bg="gray.900"
-            h={"100%"}
-            roundedTop={"30px"}
-            px={5}
-            py={8}
-            pos={"relative"}
-          >
-            <Flex align={"center"} justify={"center"} gap={2}>
-              <Image alt="coin" src="/coin.png" w={"40px"} h={"40px"} />
-              <Text color={"white"} fontSize={"25px"}>
-                {coinsEarned.toLocaleString()}
-              </Text>
-            </Flex>
-
-            <Flex justify={"center"} align={"center"}>
-              <Link to={"status"}>
-                <Flex color={"#fff"} justify={"center"} align={"center"} mt={3}>
-                  <Icon as={TfiCup} mr={2} />
-                  <Text fontSize={"20px"} color={"gray.400"}>
-                    Silver
-                  </Text>
-                  <Icon as={IoIosArrowForward} />
-                </Flex>
-              </Link>
-            </Flex>
-
-            <Flex align={"center"} justify={"center"} mt={"30px"} px={5}>
-              <Box
-                bgGradient="linear(to-t, blue.900, blue.600)"
-                h={"280px"}
-                w={"280px"}
-                rounded={"full"}
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                position={"relative"}
-                onTouchStart={async (e) =>
-                  await handleTap(e.touches[0].clientX, e.touches[0].clientY)
-                }
-                animation={`${rotateAnim} 0.1s ease `}
-                onAnimationEnd={() => setRotateAnim("")}
-              >
-                <Box
-                  bg={"rgba(0,0,0,0)"}
-                  rounded={"full"}
-                  h={"100%"}
-                  w={"100%"}
-                  pos={"absolute"}
-                  zIndex={"10"}
-                ></Box>
-                <Box
-                  bgGradient="radial(blue.600, blue.800, blue.900)"
-                  h={"90%"}
-                  w={"90%"}
-                  rounded={"full"}
-                >
-                  <Image alt="" src="/TEDDY 3.0.png" />
-                </Box>
-              </Box>
-            </Flex>
-            {/* <Button onClick={showAlert}>Show alert</Button> */}
-          </Box>
-
-          {screenAxis.map((screen) => (
-            <Text
-              key={screen.id}
-              position={"absolute"}
-              left={`${screen.x - 10}px`}
-              top={`${screen.y}px`}
-              color={"white"}
-              as={"p"}
-              animation={`${floatUpAndFadeOut} 1s ease forwards`}
-              onAnimationEnd={() => removeScreen(screen.id)}
-              zIndex={"5"}
-              fontSize={"25px"}
-            >
-              +{tappingPower}
+        <Box
+          bg="gray.900"
+          h={"100%"}
+          roundedTop={"30px"}
+          px={5}
+          py={8}
+          pos={"relative"}
+        >
+          <Flex align={"center"} justify={"center"} gap={2}>
+            <Image alt="coin" src="/coin.png" w={"40px"} h={"40px"} />
+            <Text color={"white"} fontSize={"25px"}>
+              {coinsEarned.toLocaleString()}
             </Text>
-          ))}
+          </Flex>
 
-          <Flex justify={"center"}>
+          <Flex justify={"center"} align={"center"}>
+            <Link to={"status"}>
+              <Flex color={"#fff"} justify={"center"} align={"center"} mt={3}>
+                <Icon as={TfiCup} mr={2} />
+                <Text fontSize={"20px"} color={"gray.400"}>
+                  Silver
+                </Text>
+                <Icon as={IoIosArrowForward} />
+              </Flex>
+            </Link>
+          </Flex>
+
+          <Flex align={"center"} justify={"center"} mt={"30px"} px={5}>
             <Box
-              pos={"fixed"}
+              bgGradient="linear(to-t, blue.900, blue.600)"
+              h={"280px"}
+              w={"280px"}
+              rounded={"full"}
               display={"flex"}
               justifyContent={"center"}
-              bg={"gray.900"}
-              bottom={"0"}
-              h={"135px"}
-              w={["100%", "320px"]}
-              overflowY={"hidden"}
+              alignItems={"center"}
+              position={"relative"}
+              onTouchStart={async (e) =>
+                await handleTap(e.touches[0].clientX, e.touches[0].clientY)
+              }
+              animation={`${rotateAnim} 0.1s ease `}
+              onAnimationEnd={() => setRotateAnim("")}
             >
-              <Box w={["90%", "100%"]}>
-                <Flex justify={"center"} align={"center"}>
-                  <Icon boxSize={6} mr={"-4px"} as={FcFlashOn} />
-                  <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
-                    {floatingEnergy}/
-                    <Text as={"span"} fontSize={"16px"}>
-                      {tappingEnergy}
-                    </Text>
-                  </Text>
-                </Flex>
-                <Progress
-                  rounded={"10px"}
-                  value={(floatingEnergy / tappingEnergy) * 100}
-                  min={0}
-                />
+              <Box
+                bg={"rgba(0,0,0,0)"}
+                rounded={"full"}
+                h={"100%"}
+                w={"100%"}
+                pos={"absolute"}
+                zIndex={"10"}
+              ></Box>
+              <Box
+                bgGradient="radial(blue.600, blue.800, blue.900)"
+                h={"90%"}
+                w={"90%"}
+                rounded={"full"}
+              >
+                <Image alt="" src="/TEDDY 3.0.png" />
               </Box>
             </Box>
           </Flex>
-          <Navbar userId={userData.userId} name={name ? name : ""} />
+          {/* <Button onClick={showAlert}>Show alert</Button> */}
         </Box>
-      </Flex>
-    )
+
+        {screenAxis.map((screen) => (
+          <Text
+            key={screen.id}
+            position={"absolute"}
+            left={`${screen.x - 10}px`}
+            top={`${screen.y}px`}
+            color={"white"}
+            as={"p"}
+            animation={`${floatUpAndFadeOut} 1s ease forwards`}
+            onAnimationEnd={() => removeScreen(screen.id)}
+            zIndex={"5"}
+            fontSize={"25px"}
+          >
+            +{tappingPower}
+          </Text>
+        ))}
+
+        <Flex justify={"center"}>
+          <Box
+            pos={"fixed"}
+            display={"flex"}
+            justifyContent={"center"}
+            bg={"gray.900"}
+            bottom={"0"}
+            h={"135px"}
+            w={["100%", "320px"]}
+            overflowY={"hidden"}
+          >
+            <Box w={["90%", "100%"]}>
+              <Flex justify={"center"} align={"center"}>
+                <Icon boxSize={6} mr={"-4px"} as={FcFlashOn} />
+                <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
+                  {floatingEnergy}/
+                  <Text as={"span"} fontSize={"16px"}>
+                    {tappingEnergy}
+                  </Text>
+                </Text>
+              </Flex>
+              <Progress
+                rounded={"10px"}
+                value={(floatingEnergy / tappingEnergy) * 100}
+                min={0}
+              />
+            </Box>
+          </Box>
+        </Flex>
+        <Navbar userId={userData.userId} name={name ? name : ""} />
+      </Box>
+    </Flex>
   )
 }
 export default Home

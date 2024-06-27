@@ -15,11 +15,7 @@ function App() {
   const referralId = Number(params.get("referralId"))
   // const firstName = params.get("name")
 
-  const { isLoading, userData, name } = useUserData(
-    userId,
-    firstName,
-    referralId
-  )
+  const { isLoading, name } = useUserData(userId, firstName, referralId)
 
   useEffect(() => {
     WebApp.expand()
@@ -43,9 +39,7 @@ function App() {
           <Route index element={<Home userId={userId} name={name} />} />
           <Route
             path="/referral"
-            element={
-              <Referral userId={userId} name={name} userData={userData} />
-            }
+            element={<Referral userId={userId} name={name} />}
           />
           <Route
             path="/boost"
