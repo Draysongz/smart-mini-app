@@ -49,6 +49,7 @@ function Referral({
 
   useEffect(() => {
     async function getReferredUsers() {
+      setReferredUsers(() => [])
       if (!userData) return
       const qs = await getQuerySnapshot(Number(userData.userId))
       if (qs.empty) {
@@ -57,7 +58,7 @@ function Referral({
       }
       const data = qs.docs[0].data()
       const referrals = data.referrals
-      setReferredUsers(() => [])
+
       referrals.forEach(async (refId: number) => {
         const data = await getRef(refId)
         if (data) {
@@ -91,10 +92,10 @@ function Referral({
   // }
   return (
     userData && (
-      <Flex h={"100%"} justify="center" align="center">
+      <Flex minH={"100vh"} justify="center" align="center">
         <Box
           width={["100%", "360px"]}
-          height="100%"
+          minH={"100vh"}
           bg={"gray.900"}
           position={"relative"}
           px={5}
