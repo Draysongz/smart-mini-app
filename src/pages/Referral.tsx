@@ -44,7 +44,7 @@ function Referral({
   // const userId = Number(params.get("userId"))
   // const referralId = Number(params.get("referralId"))
   // const firstName = params.get("name")
-  const { userData } = useUserData(userId, name)
+  const { isLoading, userData } = useUserData(userId, name)
   const [referredUsers, setReferredUsers] = useState<DocumentData[]>()
 
   useEffect(() => {
@@ -164,38 +164,49 @@ function Referral({
               </Text>
             </Box>
             <Box mt={4}>
-              {!referredUsers && (
+              {/* {!referredUsers && (
                 <Flex justify={"center"}>
                   <Spinner />
                 </Flex>
-              )}
-              {referredUsers?.map((data) => (
-                <Flex
-                  justify={"space-between"}
-                  align={"center"}
-                  bg="rgba(255, 255, 255, 0.1)"
-                  rounded={"20px"}
-                  p={3}
-                  mb={2}
-                  key={data.name}
-                >
-                  <HStack>
-                    <Image alt="" w={"35px"} h={"35px"} src="/TEDDY 1.0.png" />
-                    <Box>
-                      <Text fontWeight={"bold"}>{data.name}</Text>
-                      <HStack align={"center"} fontSize={"small"} mt={"-2px"}>
-                        {/* <Text>{data.status} </Text> */}
-                        {/* <Icon as={GoDotFill} /> */}
-                        <Image alt="" src="/coin.png" w={"20px"} h={"20px"} />
-                        <Text color={"yellow.400"} ml={"-5px"}>
-                          {Math.round(data.coinsEarned)}
-                        </Text>
-                      </HStack>
-                    </Box>
-                  </HStack>
-                  <Text color={"yellow.400"}>+{3}k</Text>
+              )} */}
+              {isLoading || !referredUsers ? (
+                <Flex justify={"center"}>
+                  <Spinner />
                 </Flex>
-              ))}
+              ) : (
+                referredUsers.map((data) => (
+                  <Flex
+                    justify={"space-between"}
+                    align={"center"}
+                    bg="rgba(255, 255, 255, 0.1)"
+                    rounded={"20px"}
+                    p={3}
+                    mb={2}
+                    key={data.name}
+                  >
+                    <HStack>
+                      <Image
+                        alt=""
+                        w={"35px"}
+                        h={"35px"}
+                        src="/TEDDY 1.0.png"
+                      />
+                      <Box>
+                        <Text fontWeight={"bold"}>{data.name}</Text>
+                        <HStack align={"center"} fontSize={"small"} mt={"-2px"}>
+                          {/* <Text>{data.status} </Text> */}
+                          {/* <Icon as={GoDotFill} /> */}
+                          <Image alt="" src="/coin.png" w={"20px"} h={"20px"} />
+                          <Text color={"yellow.400"} ml={"-5px"}>
+                            {Math.round(data.coinsEarned)}
+                          </Text>
+                        </HStack>
+                      </Box>
+                    </HStack>
+                    <Text color={"yellow.400"}>+{3}k</Text>
+                  </Flex>
+                ))
+              )}
             </Box>
           </Box>
           <Navbar userId={userData.userId} name={name ? name : ""} />

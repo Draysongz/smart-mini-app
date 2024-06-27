@@ -14,9 +14,6 @@ function useUserData(
     // eslint-disable-next-line no-extra-semi
     ;(async () => {
       try {
-        // const userId = Number(params.get("userId"))
-        // const referralId = Number(params.get("referralId"))
-        // const firstName = params.get("name")
         if (!userId) return
         if (!firstName) return
         const data = await getUserData(userId, firstName, referralId)
