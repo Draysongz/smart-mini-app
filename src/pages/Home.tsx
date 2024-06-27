@@ -79,8 +79,8 @@ function Home({
     // update coins in db
     // const userId = userData.userId
     await updateUserData(userId, {
-      coinsEarned: coinsEarned + 5,
-      floatingTapEnergy: floatingEnergy - 5,
+      coinsEarned: coinsEarned + tappingPower,
+      floatingTapEnergy: floatingEnergy - tappingPower,
     })
   }
 
