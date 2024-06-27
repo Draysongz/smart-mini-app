@@ -3,7 +3,7 @@ import { getUserData } from "../helper-functions/getUser"
 import { DocumentData } from "firebase/firestore"
 
 function useUserData(
-  userId: number,
+  userId: number | undefined,
   firstName: string | null,
   referralId?: number
 ) {

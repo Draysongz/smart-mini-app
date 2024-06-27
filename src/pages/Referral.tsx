@@ -21,22 +21,12 @@ import { FaRegCopy } from "react-icons/fa6"
 //   },
 // ]
 
-async function getRef(userId: number) {
-  const qs = await getQuerySnapshot(userId)
-  if (qs.empty) {
-    console.log("User does not exist")
-    return
-  }
-  const data = qs.docs[0].data()
-  return data
-}
-
 function Referral({
   userId,
   name,
   userData,
 }: {
-  userId: number
+  userId: number | undefined
   name: string | null
   userData: DocumentData | undefined
 }) {
@@ -76,6 +66,17 @@ function Referral({
 
     return () => {}
   }, [userData])
+
+  async function getRef(userId: number | undefined) {
+    if (!userId) return
+    const qs = await getQuerySnapshot(userId)
+    if (qs.empty) {
+      console.log("User does not exist")
+      return
+    }
+    const data = qs.docs[0].data()
+    return data
+  }
 
   function handleCopy() {
     try {

@@ -10,7 +10,7 @@ function ContextProvdider({
   referralId,
   children,
 }: {
-  userId: number
+  userId: number | undefined
   firstName: string | null
   referralId: number
   children: ReactNode

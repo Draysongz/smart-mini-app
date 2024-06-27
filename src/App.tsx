@@ -6,12 +6,14 @@ import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
 import ComingSoon from "./components/ComingSoon"
 import WebApp from "@twa-dev/sdk"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 function App() {
+  const [userId, setUserId] = useState<number>()
+  const [firstName, setFirstName] = useState<string | null>(null)
   const params = new URLSearchParams(location.search)
-  const userId = Number(params.get("userId"))
+  // const userId = Number(params.get("userId"))
   const referralId = Number(params.get("referralId"))
-  const firstName = params.get("name")
+  // const firstName = params.get("name")
 
   const { isLoading, userData, name } = useUserData(
     userId,
@@ -21,6 +23,10 @@ function App() {
 
   useEffect(() => {
     WebApp.expand()
+    const id = WebApp.initDataUnsafe.user?.id
+    const name = WebApp.initDataUnsafe.user?.first_name || null
+    setUserId(id)
+    setFirstName(name)
   }, [])
 
   if (isLoading) {
@@ -34,7 +40,7 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Home userId={userId} name={name} />} />
           <Route
             path="/referral"
             element={

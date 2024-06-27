@@ -1,7 +1,13 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import Navbar from "./Navbar"
 
-function ComingSoon({ userId, name }: { userId: number; name: string | null }) {
+function ComingSoon({
+  userId,
+  name,
+}: {
+  userId: number | undefined
+  name: string | null
+}) {
   return (
     <Box h={"100%"}>
       <Flex

@@ -4,7 +4,13 @@ import { FaFire } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { BiCoinStack } from "react-icons/bi"
 import { useEffect, useState } from "react"
-function Navbar({ userId, name }: { userId: number; name: string | null }) {
+function Navbar({
+  userId,
+  name,
+}: {
+  userId: number | undefined
+  name: string | null
+}) {
   const [activeTab, setActiveTab] = useState("")
   useEffect(() => {
     const path = location.pathname

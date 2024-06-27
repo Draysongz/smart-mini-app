@@ -38,7 +38,13 @@ const rotateCoinRight = keyframes`
     transform: rotateY(-20deg)
   }
 `
-function Home() {
+function Home({
+  userId,
+  name,
+}: {
+  userId: number | undefined
+  name: string | null
+}) {
   const [floatingEnergy, setFloatingEnergy] = useState(0)
   const [coinsEarned, setCoinsEarned] = useState(0)
   const [tappingEnergy, setTappingEnergy] = useState(0)
@@ -46,11 +52,11 @@ function Home() {
   const [params] = useSearchParams()
   const [rotateAnim, setRotateAnim] = useState("")
 
-  const userId = Number(params.get("userId"))
+  // const userId = Number(params.get("userId"))
   const referralId = Number(params.get("referralId"))
-  const firstName = params.get("name")
+  // const firstName = params.get("name")
 
-  const { userData, name } = useUserData(userId, firstName, referralId)
+  const { userData } = useUserData(userId, name, referralId)
 
   const [screenAxis, setScreenAxis] = useState<
     { x: number; y: number; id: number }[]
