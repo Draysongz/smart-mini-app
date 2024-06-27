@@ -171,7 +171,7 @@ function Referral({
               )} */}
               {isLoading || !referredUsers ? (
                 <Flex justify={"center"}>
-                  <Spinner />
+                  <Spinner color="gray.500" />
                 </Flex>
               ) : (
                 referredUsers.map((data) => (

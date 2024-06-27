@@ -151,7 +151,7 @@ function Home({
 
   return !userData ? (
     <Flex height="100%" justify="center" overflow={"hidden"} align="center">
-      <Spinner />
+      <Spinner color="gray.500" />
     </Flex>
   ) : (
     <Flex height="100%" justify="center" overflow={"hidden"} align="center">
