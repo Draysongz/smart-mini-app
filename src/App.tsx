@@ -21,6 +21,7 @@ function App() {
     WebApp.expand()
     const id = WebApp.initDataUnsafe.user?.id
     const name = WebApp.initDataUnsafe.user?.first_name || null
+    if (!id && !name) return
     setUserId(id)
     setFirstName(name)
   }, [])
