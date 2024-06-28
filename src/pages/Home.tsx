@@ -71,48 +71,25 @@ function Home({
     { x: number; y: number; id: number }[]
   >([])
 
-  const handleTap = async (touchList: React.TouchList) => {
+  const handleTap = async (clientX: number, clientY: number) => {
     if (!userId) return
     if (floatingEnergy - tappingPower <= 0) return
 
-    for (let i = 0; i < touchList.length; i++) {
-      console.log(touchList[i].clientX, touchList[i].clientY)
-      const clientX = touchList[i].clientX
-      const clientY = touchList[i].clientY
-      setFloatingEnergy((curr) => curr - tappingPower)
-      setCoinsEarned((coins) => coins + tappingPower)
-      setScreenAxis((prv) => [
-        ...prv,
-        { x: clientX, y: clientY, id: Date.now() },
-      ])
-      if (clientX < 170) {
-        setRotateAnim(() => rotateCoinLeft)
-      } else if (clientX > 230) {
-        setRotateAnim(() => rotateCoinRight)
-      }
-
-      // update coins in db
-      // const userId = userData.userId
-      await updateUserData(userId, {
-        coinsEarned: coinsEarned + tappingPower,
-        floatingTapEnergy: floatingEnergy - tappingPower,
-      })
+    setFloatingEnergy((curr) => curr - tappingPower)
+    setCoinsEarned((coins) => coins + tappingPower)
+    setScreenAxis((prv) => [...prv, { x: clientX, y: clientY, id: Date.now() }])
+    if (clientX < 170) {
+      setRotateAnim(() => rotateCoinLeft)
+    } else if (clientX > 230) {
+      setRotateAnim(() => rotateCoinRight)
     }
-    // setFloatingEnergy((curr) => curr - tappingPower)
-    // setCoinsEarned((coins) => coins + tappingPower)
-    // setScreenAxis((prv) => [...prv, { x: clientX, y: clientY, id: Date.now() }])
-    // if (clientX < 170) {
-    //   setRotateAnim(() => rotateCoinLeft)
-    // } else if (clientX > 230) {
-    //   setRotateAnim(() => rotateCoinRight)
-    // }
 
-    // // update coins in db
-    // // const userId = userData.userId
-    // await updateUserData(userId, {
-    //   coinsEarned: coinsEarned + tappingPower,
-    //   floatingTapEnergy: floatingEnergy - tappingPower,
-    // })
+    // update coins in db
+    // const userId = userData.userId
+    await updateUserData(userId, {
+      coinsEarned: coinsEarned + tappingPower,
+      floatingTapEnergy: floatingEnergy - tappingPower,
+    })
   }
 
   const removeScreen = (id: number) => {
@@ -220,7 +197,9 @@ function Home({
               justifyContent={"center"}
               alignItems={"center"}
               position={"relative"}
-              onTouchStart={async (e) => await handleTap(e.touches)}
+              onTouchStart={async (e) =>
+                await handleTap(e.touches[0].clientX, e.touches[0].clientY)
+              }
               animation={`${rotateAnim} 0.1s ease `}
               onAnimationEnd={() => setRotateAnim("")}
             >
