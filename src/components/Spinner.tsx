@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners"
 function Spinner() {
   return (
     <Flex
-      bg={"url(/spinner_bg.jpeg)"}
+      bg={"url(/splash.jpg)"}
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
       bgPos={"center"}

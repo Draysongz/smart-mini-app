@@ -217,7 +217,7 @@ function Home({
                 w={"90%"}
                 rounded={"full"}
               >
-                <Image alt="" src="/TEDDY 3.0.png" />
+                <Image alt="" src="/mini.svg" />
               </Box>
             </Box>
           </Flex>

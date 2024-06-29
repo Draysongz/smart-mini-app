@@ -1,22 +1,31 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app"
-// import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import {getFirestore} from 'firebase/firestore'
+import {getAuth} from 'firebase/auth'
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDp9po1V1rY5s89xzTO4Pn7EyBmgibumz4",
-  authDomain: "barni-coin.firebaseapp.com",
-  projectId: "barni-coin",
-  storageBucket: "barni-coin.appspot.com",
-  messagingSenderId: "55776397498",
-  appId: "1:55776397498:web:ab037732877d70d6cc5a83",
-  measurementId: "G-YGKW596RY3",
-}
+  apiKey: "AIzaSyAqUckuIQvu2e2vdYUNBfdZVT6vkmWBJJU",
+  authDomain: "panda-6ebac.firebaseapp.com",
+  projectId: "panda-6ebac",
+  storageBucket: "panda-6ebac.appspot.com",
+  messagingSenderId: "246165789858",
+  appId: "1:246165789858:web:c477f5610c2615aa254bfb",
+  measurementId: "G-V7KHS3H96K"
+};
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
+const auth = getAuth(app)
 
-export { app }
+
+export {
+    app,
+    db,
+    auth
+}
