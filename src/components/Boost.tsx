@@ -1,5 +1,6 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Navbar from "./Navbar"
+import { updateUserData } from "../helper-functions/getUser";
 
 interface BoostProps{
     userId: number | undefined,
@@ -7,6 +8,8 @@ interface BoostProps{
 }
 
 const Boost = ({ userId, name }: BoostProps) => {
+
+    
     return (
         <div className={`bg-[#1d1d1d] h-screen text-white`}>
             <div className="mb-8 pt-8 border-b rounded-md pb-4 border-[#fbce47]">

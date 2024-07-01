@@ -248,7 +248,7 @@ function Home({
             w={["100%", "320px"]}
             overflowY={"hidden"}
           >
-            <Link to={"/reflevel"}>
+            <Link to={"/boost"}>
             <Box w={["90%", "100%"]}>
               <Flex justify={"center"} align={"center"}>
                 <Text fontWeight={"bold"} fontSize={"18px"} color={"#000"} bgColor={"#fbce47"} border={"1"} borderColor={"#1d1d1d"} px={"8"} py={"3"} rounded={"full"}>
