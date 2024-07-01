@@ -1,6 +1,7 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Navbar from "./Navbar"
-import { updateUserData } from "../helper-functions/getUser";
+import { useUserData } from "../hooks/useUserData";
+import { useSearchParams } from "react-router-dom";
 
 interface BoostProps{
     userId: number | undefined,
@@ -8,6 +9,12 @@ interface BoostProps{
 }
 
 const Boost = ({ userId, name }: BoostProps) => {
+
+      const [params] = useSearchParams()
+      const referralId = Number(params.get("referralId"))
+  
+
+  const { userData } = useUserData(userId, name, referralId)
 
     
     return (
@@ -56,7 +63,7 @@ const Boost = ({ userId, name }: BoostProps) => {
                            <img src={"/click.svg"} width={22} height={22} className="mr-2" />
                            <div>
                                 <p className="text-sm">Multitap</p>
-                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level 1</p>
+                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level {userData?.MultitapLevel}</p>
                            </div>
                         </div>
                         <div className="second">
@@ -69,7 +76,7 @@ const Boost = ({ userId, name }: BoostProps) => {
                            <img src={"/energy.svg"} width={22} height={22} className="mr-2" />
                            <div>
                                 <p className="text-sm">Energy limit</p>
-                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level 1</p>
+                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level {userData?.energyLevel}</p>
                            </div>
                         </div>
                         <div className="second">
@@ -82,7 +89,7 @@ const Boost = ({ userId, name }: BoostProps) => {
                            <img src={"/recharge.svg"} width={15} height={15} className="mr-2" />
                            <div>
                                 <p className="text-sm">Recharging speed</p>
-                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level 1</p>
+                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level {userData?.rechargeLevel}</p>
                            </div>
                         </div>
                         <div className="second">
@@ -94,7 +101,7 @@ const Boost = ({ userId, name }: BoostProps) => {
                            <img src={"/bot.svg"} width={22} height={22} className="mr-2" />
                            <div>
                                 <p className="text-sm">Tap bot</p>
-                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level 1</p>
+                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level {userData?.tapbotLevel}</p>
                            </div>
                         </div>
                         <div className="second">

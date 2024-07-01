@@ -4,7 +4,6 @@ import {
   Box,
   Image,
   Text,
-  Progress,
   Icon,
   Spinner,
 } from "@chakra-ui/react"
@@ -15,10 +14,8 @@ import Navbar from "../components/Navbar"
 import { useUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { FaUser } from "react-icons/fa6"
-import { FcFlashOn } from "react-icons/fc"
 import { Link, useSearchParams } from "react-router-dom"
-import { IoIosArrowForward } from "react-icons/io"
-import { TfiCup } from "react-icons/tfi"
+
 const floatUpAndFadeOut = keyframes`
   0% {
     transform: translateY(0px);

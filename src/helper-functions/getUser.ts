@@ -27,6 +27,10 @@ export type User = {
   tapEnergy: number
   tapPower: number
   userId: number
+  multitapLevel: number,
+  energyLevel : number,
+  rechargeLevel: number,
+  tapbotLevel: number,
 }
 
 async function getQuerySnapshot(userId: number) {
@@ -73,6 +77,10 @@ async function createUser(userId: number, name: string) {
     coinsEarned: 1000,
     floatingTapEnergy: 1000,
     lastUpdatedTime: Date.now() / 1000,
+    multitapLevel: 1,
+    energyLevel : 1,
+    rechargeLevel: 1,
+    tapbotLevel: 1,
     name,
     referrals: [],
     refillEnergy: 5,
@@ -81,6 +89,7 @@ async function createUser(userId: number, name: string) {
     tapEnergy: 1000,
     tapPower: 1,
     userId: userId,
+
   })
   console.log("Document written with ID: ", docRef.id)
 }
