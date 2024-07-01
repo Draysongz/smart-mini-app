@@ -26,8 +26,8 @@ async function upgradeAttribute(userId: number, attribute: string) {
             cost = 200 * userData?.tapPower; // Example cost calculation, adjust as per your logic
             level = userData?.tapPower + 1;
             break;
-        case 'energyLevel':
-            cost = 200 * userData?.energyLevel; // Example cost calculation
+        case 'tapEnergy':
+            cost = 200 * (userData?.tapEnergy / 1000); // Example cost calculation
             level = userData?.tapEnergy * 2;
             break;
         // Add cases for other attributes as needed
@@ -120,7 +120,7 @@ async function upgradeAttribute(userId: number, attribute: string) {
                     </div>
                     <div
                         className="flex mb-2 justify-between border py-2 rounded-md px-2 w-11/12 mx-auto border-[#1d1d1d] bg-[#282828]"
-                        onClick={() => upgradeAttribute(userId!, 'energyLevel')}
+                        onClick={() => upgradeAttribute(userId!, 'tapEnergy')}
                     >
                         <div className="first flex">
                             <img src={"/energy.svg"} width={22} height={22} className="mr-2" />
