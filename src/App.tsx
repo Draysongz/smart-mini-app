@@ -9,6 +9,8 @@ import { useEffect, useState } from "react"
 import Boost from "./components/Boost"
 import Level from "./components/Level"
 import Stats from "./pages/Stats"
+  import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const [userId, setUserId] = useState<number>()
   const [firstName, setFirstName] = useState<string | null>(null)
@@ -62,6 +64,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </ContextProvdider>
   )
 }

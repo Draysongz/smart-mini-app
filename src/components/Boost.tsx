@@ -3,6 +3,7 @@ import Navbar from "./Navbar"
 import { useUserData } from "../hooks/useUserData";
 import { useSearchParams } from "react-router-dom";
 import { updateUserData } from "../helper-functions/getUser";
+import {toast} from 'react-toastify'
 
 
 interface BoostProps{
@@ -50,6 +51,7 @@ async function upgradeAttribute(userId: number, attribute: string) {
 
     // Update user data in the database
     await updateUserData(userId, updates);
+    toast.success(`${attribute} upgrade successful`)
 
   
 }
