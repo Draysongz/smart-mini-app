@@ -30,10 +30,10 @@ const Boost = ({ userId, name }: BoostProps) => {
             </div>
             </div>
             <div className="coin border flex justify-between text-white border-[#1d1d1d] bg-[#282828] w-11/12 mx-auto px-2 py-2 mt-4 rounded-md">
-                <h1 className="flex pl-4 text-4xl font-bold"><img src={"/coin.svg"} height={40} width={40} className="mr-1" />6122</h1>
+                <h1 className="flex pl-4 text-4xl font-bold"><img src={"/coin.svg"} height={40} width={40} className="mr-1" />{userData?.coinsEarned}</h1>
                 <div className="pr-6">
                     <p className="text-sm font-normal">Level</p>
-                        <p className="text-sm font-semibold">1</p>
+                        <p className="text-sm font-semibold">{userData?.tapPower}</p>
                 </div>
             </div>
             </div>
