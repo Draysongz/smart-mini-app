@@ -33,7 +33,7 @@ function Navbar({
         pos={"fixed"}
         display={"flex"}
         justifyContent={"center"}
-        bg={"gray.900"}
+        bg={"1d1d1d"}
         bottom={"0"}
         h={"90px"}
         w={"100%"}
@@ -42,7 +42,7 @@ function Navbar({
           w={["90%", "320px"]}
           h={"60px"}
           rounded={"20px"}
-          bg="rgba(255, 255, 255, 0.1)"
+          bg="#282828"
         >
           <Flex
             justify={"center"}
@@ -58,7 +58,7 @@ function Navbar({
               <Box
                 textAlign={"center"}
                 w={"50px"}
-                bg={activeTab == "home" ? "rgba(0,0,0, 0.4)" : ""}
+                bg={activeTab == "home" ? "#423c2c" : ""}
                 rounded={"10px"}
                 px={"8px"}
                 py={"3px"}
@@ -70,7 +70,7 @@ function Navbar({
                 >
                   <Image
                     alt=""
-                    src="/coin.png"
+                    src="/coin.svg"
                     mt={"3px"}
                     w={"20px"}
                     h={"20px"}
@@ -87,7 +87,7 @@ function Navbar({
                 textAlign={"center"}
                 px={4}
                 py={"3px"}
-                bg={activeTab == "boost" ? "rgba(0,0,0, 0.4)" : ""}
+                bg={activeTab == "boost" ? "#423c2c" : ""}
                 rounded={"10px"}
               >
                 <Icon mb={"-5px"} as={FaFire} color={"gray"} />
@@ -102,7 +102,7 @@ function Navbar({
                 textAlign={"center"}
                 px={4}
                 py={"3px"}
-                bg={activeTab == "earn" ? "rgba(0,0,0, 0.4)" : ""}
+                bg={activeTab == "earn" ? "#423c2c" : ""}
                 rounded={"10px"}
               >
                 <Icon mb={"-5px"} as={BiCoinStack} color={"gray"} />
@@ -117,7 +117,7 @@ function Navbar({
                 textAlign={"center"}
                 px={4}
                 py={"3px"}
-                bg={activeTab == "ref" ? "rgba(0,0,0, 0.4)" : ""}
+                bg={activeTab == "ref" ? "#423c2c" : ""}
                 rounded={"10px"}
               >
                 <Icon mb={"-5px"} as={FaUserGroup} color={"gray"} />

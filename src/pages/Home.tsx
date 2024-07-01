@@ -161,35 +161,32 @@ function Home({
         </Box>
 
         <Box
-          bg="gray.900"
+          bg="#1d1d1d"
           h={"100%"}
           roundedTop={"30px"}
           px={5}
           py={8}
           pos={"relative"}
         >
-          <Flex align={"center"} justify={"center"} gap={2}>
-            <Image alt="coin" src="/coin.png" w={"40px"} h={"40px"} />
+          <Flex align={"center"} justify={"center"} gap={2} pb={2}>
+            <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
             <Text color={"white"} fontSize={"25px"}>
               {coinsEarned.toLocaleString()}
             </Text>
           </Flex>
 
           <Flex justify={"center"} align={"center"}>
-            <Link to={"status"}>
-              <Flex color={"#fff"} justify={"center"} align={"center"} mt={3}>
-                <Icon as={TfiCup} mr={2} />
-                <Text fontSize={"20px"} color={"gray.400"}>
-                  Silver
+          <Image alt="coin" src="/speedometer.svg" w={"30px"} h={"30px"} mr={"1"} />
+                <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
+                  {floatingEnergy}/
+                  <Text as={"span"} fontSize={"16px"}>
+                    {tappingEnergy}
+                  </Text>
                 </Text>
-                <Icon as={IoIosArrowForward} />
-              </Flex>
-            </Link>
           </Flex>
 
           <Flex align={"center"} justify={"center"} mt={"30px"} px={5}>
             <Box
-              bgGradient="linear(to-t, blue.900, blue.600)"
               h={"280px"}
               w={"280px"}
               rounded={"full"}
@@ -212,12 +209,11 @@ function Home({
                 zIndex={"10"}
               ></Box>
               <Box
-                bgGradient="radial(blue.600, blue.800, blue.900)"
-                h={"90%"}
-                w={"90%"}
+                h={"120%"}
+                w={"120%"}
                 rounded={"full"}
               >
-                <Image alt="" src="/mini.svg" />
+                <Image alt="" src="/mini.svg" width={480} height={480} />
               </Box>
             </Box>
           </Flex>
@@ -246,28 +242,26 @@ function Home({
             pos={"fixed"}
             display={"flex"}
             justifyContent={"center"}
-            bg={"gray.900"}
-            bottom={"0"}
+            bg={"#1d1d1d"}
+            bottom={"20"}
             h={"135px"}
             w={["100%", "320px"]}
             overflowY={"hidden"}
           >
+            <Link to={"/reflevel"}>
             <Box w={["90%", "100%"]}>
               <Flex justify={"center"} align={"center"}>
-                <Icon boxSize={6} mr={"-4px"} as={FcFlashOn} />
-                <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
-                  {floatingEnergy}/
-                  <Text as={"span"} fontSize={"16px"}>
-                    {tappingEnergy}
-                  </Text>
+                <Text fontWeight={"bold"} fontSize={"18px"} color={"#000"} bgColor={"#fbce47"} border={"1"} borderColor={"#1d1d1d"} px={"8"} py={"3"} rounded={"full"}>
+                  Boost
                 </Text>
               </Flex>
-              <Progress
+              {/* <Progress
                 rounded={"10px"}
                 value={(floatingEnergy / tappingEnergy) * 100}
                 min={0}
-              />
+              /> */}
             </Box>
+            </Link>
           </Box>
         </Flex>
         <Navbar userId={userData.userId} name={name ? name : ""} />
