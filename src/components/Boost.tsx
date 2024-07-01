@@ -15,6 +15,7 @@ const Boost = ({ userId, name }: BoostProps) => {
   
 
   const { userData } = useUserData(userId, name, referralId)
+  console.log(userData)
 
     
     return (
@@ -63,7 +64,7 @@ const Boost = ({ userId, name }: BoostProps) => {
                            <img src={"/click.svg"} width={22} height={22} className="mr-2" />
                            <div>
                                 <p className="text-sm">Multitap</p>
-                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level {userData?.MultitapLevel}</p>
+                                <p className="flex text-sm"><img src={"/coin.svg"} width={18} height={18} className="mr-1" />200 | Level {userData?.tapPower}</p>
                            </div>
                         </div>
                         <div className="second">
