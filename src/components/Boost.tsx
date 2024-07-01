@@ -28,7 +28,7 @@ async function upgradeAttribute(userId: number, attribute: string) {
             break;
         case 'energyLevel':
             cost = 200 * userData?.energyLevel; // Example cost calculation
-            level = userData?.energyLevel + 1;
+            level = userData?.tapEnergy * 2;
             break;
         // Add cases for other attributes as needed
         default:
@@ -128,7 +128,7 @@ async function upgradeAttribute(userId: number, attribute: string) {
                                 <p className="text-sm">Energy limit</p>
                                 <p className="flex text-sm">
                                     <img src={"/coin.svg"} width={18} height={18} className="mr-1" />
-                                    {200 * userData?.energyLevel} | Level {userData?.energyLevel}
+                                    {200 * (userData?.tapEnergy / 1000)} | Level {(userData?.tapEnergy)/1000}
                                 </p>
                             </div>
                         </div>
