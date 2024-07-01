@@ -4,9 +4,11 @@ import Referral from "./pages/Referral"
 import { useUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
-import ComingSoon from "./components/ComingSoon"
 import WebApp from "@twa-dev/sdk"
 import { useEffect, useState } from "react"
+import Boost from "./components/Boost"
+import Level from "./components/Level"
+import Stats from "./pages/Stats"
 function App() {
   const [userId, setUserId] = useState<number>()
   const [firstName, setFirstName] = useState<string | null>(null)
@@ -44,15 +46,15 @@ function App() {
           />
           <Route
             path="/boost"
-            element={<ComingSoon userId={userId} name={name} />}
+            element={<Boost userId={userId} name={name} />}
           />
           <Route
             path="/tasks"
-            element={<ComingSoon userId={userId} name={name} />}
+            element={<Level userId={userId} name={name} />}
           />
           <Route
             path="/status"
-            element={<ComingSoon userId={userId} name={name} />}
+            element={<Stats userId={userId} name={name} />}
           />
         </Routes>
       </BrowserRouter>

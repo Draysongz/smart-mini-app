@@ -124,12 +124,12 @@ function Navbar({
                 <Text fontSize={""}>Ref</Text>
               </Box>
             </Link>
-            {/* <Link to="">
+            <Link to="/status">
               <Box textAlign={"center"} px={4}>
-                <Icon mb={"-5px"} as={FaChartBar} color={"gray"} />
+                <Icon mb={"-5px"} as={BiCoinStack} color={"gray"} />
                 <Text fontSize={""}>Stats</Text>
               </Box>
-            </Link> */}
+            </Link>
           </Flex>
         </Box>
       </Box>
