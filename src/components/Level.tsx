@@ -16,13 +16,14 @@ const Level = ({ userId, name }: LevelProps) => {
   const { userData } = useRealtimeUserData(userId, name, referralId);
 
   const levels = [
-    { level: 2, coinsRequired: 1000, coinstoEarn: 100 },
-    { level: 3, coinsRequired: 3000, coinstoEarn: 300 },
-    { level: 4, coinsRequired: 6000, coinstoEarn: 600 },
-    { level: 5, coinsRequired: 9000, coinstoEarn: 900 },
-    { level: 6, coinsRequired: 12000, coinstoEarn: 1200 },
-    { level: 7, coinsRequired: 15000, coinstoEarn: 1500 },
-    { level: 8, coinsRequired: 18000, coinstoEarn: 1800 },
+    { level: 2, coinsRequired: 5000, coinstoEarn: 500 },
+    { level: 3, coinsRequired: 500000, coinstoEarn: 5000 },
+    { level: 4, coinsRequired: 250000, coinstoEarn: 25000 },
+    { level: 5, coinsRequired: 500000, coinstoEarn: 50000 },
+    { level: 6, coinsRequired: 2500000, coinstoEarn: 250000 },
+    { level: 7, coinsRequired: 5000000, coinstoEarn: 500000 },
+    { level: 8, coinsRequired: 10000000, coinstoEarn: 1000000 },
+    {level: 9,  coinsRequired: 50000000, coinstoEarn: 5000000}
   ];
 
   const handleClaim = async (level: number, coins: number) => {
