@@ -17,7 +17,8 @@ function App() {
   const params = new URLSearchParams(location.search)
   // const userId = Number(params.get("userId"))
   const referralId = Number(params.get("referralId"))
-  // const userId = 1
+
+  // const userId = 2146305061
   // const firstName = 'habibilord'
   // const firstName = params.get("name")
 

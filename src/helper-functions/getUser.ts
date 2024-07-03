@@ -20,6 +20,7 @@ export type User = {
   floatingTapEnergy: number
   lastUpdatedTime: FieldValue
   name: string
+  referralLink: string
   referrals: number[]
   refillEnergy: number
   refillTime: number
@@ -87,6 +88,7 @@ async function createUser(userId: number, name: string) {
     tapEnergy: 1000,
     tapPower: 1,
     userId: userId,
+    referralLink: null
 
   })
   console.log("Document written with ID: ", docRef.id)
