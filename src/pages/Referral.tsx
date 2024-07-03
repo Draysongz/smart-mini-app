@@ -1,9 +1,8 @@
-import { Box, Flex, HStack, Icon, Image, Text, Spinner } from "@chakra-ui/react"
+import { Flex, Spinner } from "@chakra-ui/react"
 import Navbar from "../components/Navbar"
 import { getQuerySnapshot } from "../helper-functions/getUser"
 import { useEffect, useState } from "react"
 import { DocumentData } from "firebase/firestore"
-import { FaRegCopy } from "react-icons/fa6"
 import { useRealtimeUserData } from "../hooks/useUserData"
 // import Spinner from "../components/Spinner"
 
@@ -92,126 +91,39 @@ function Referral({
   // }
   return (
     userData && (
-      <Flex minH={"100vh"} justify="center" align="center">
-        <Box
-          width={["100%", "360px"]}
-          minH={"100vh"}
-          bg={"gray.900"}
-          position={"relative"}
-          px={5}
-          py={8}
-          color={"white"}
-        >
-          <Box color={"white"}>
-            <Box textAlign={"center"}>
-              <Text as="h2" fontSize={"30px"} fontWeight={"bold"}>
-                Invite Friends
-              </Text>
-              <Text as="p" fontSize={"small"} fontStyle={"italic"}>
-                You and your friend will receive bonuses
-              </Text>
-            </Box>
-          </Box>
-          <Box mt={8}>
-            <HStack bg="rgba(255, 255, 255, 0.1)" rounded={"20px"} p={3}>
-              <Image alt="" w={"60px"} h={"60px"} src="/giftbox.png" />
-              <Box>
-                <Text fontWeight={"bold"}>Invite a friend</Text>
-                <HStack color={"yellow.400"} fontSize={"small"}>
-                  <Image alt="" src="/coin.png" w={"20px"} h={"20px"} />
-                  <Text ml={"-2px"}>
-                    +3000{" "}
-                    <Text as={"span"} color={"white"}>
-                      for you and your frien
-                    </Text>
-                  </Text>
-                </HStack>
-              </Box>
-            </HStack>
-
-            <Flex justify={"space-between"} gap={2} mt={"10px"}>
-              <Box
-                rounded={"15px"}
-                p={3}
-                bg="blue.800"
-                textAlign={"center"}
-                fontWeight={"bold"}
-                w={"100%"}
-              >
-                <Text>Invite a friend</Text>
-              </Box>
-              <Box
-                w={"60px"}
-                bg={"blue.800"}
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                rounded={"15px"}
-                cursor={"pointer"}
-                onClick={handleCopy}
-                _hover={{ width: "70px" }}
-                transition={"width 0.5s ease"}
-              >
-                <Icon as={FaRegCopy} />
-              </Box>
-            </Flex>
-          </Box>
-
-          <Box mt={"65px"} pb={"120px"}>
-            <Box>
-              <Text as={"h3"} fontWeight={"bold"} fontSize={"17px"}>
-                Friend List ({referredUsers?.length})
-              </Text>
-            </Box>
-            <Box mt={4}>
-              {/* {!referredUsers && (
-                <Flex justify={"center"}>
-                  <Spinner />
-                </Flex>
-              )} */}
+      <div className="h-full min-h-screen bg-[#1d1d1d] text-white">
+          <h1 className="text-2xl text-center">{referredUsers?.length} Referrals</h1>
+          <p className="pl-4 pb-4 pt-8">My referral link:</p>
+          <div className="border px-2 py-2 w-11/12 border-[#1d1d1d] bg-[#282828] mx-auto flex justify-between rounded-md">
+            <p className="text-gray-400 pt-2 pl-2">https://t.me/BarnicoinBot...</p>
+            <button className="flex border border-[#282828] px-2 py-2 bg-[#fbc347] rounded-md mr-1 text-black" onClick={handleCopy}><img src={"/clip.svg"} width={18} height={18} className="mr-1 mt-1" />Copy</button>
+          </div>
+          <p className="pt-1 pl-4 text-gray-400 pb-12">How referral levels work? <a href={"/reflevel"} className="text-[#fbc347] underline">Check</a></p>
+          <div style={{ paddingBottom: '80px', overflowY: 'auto' }}>
+          <h1 className="pl-4 pb-4">My referrals:</h1>
               {isLoading || !referredUsers ? (
                 <Flex justify={"center"}>
                   <Spinner color="gray.500" />
                 </Flex>
               ) : (
                 referredUsers.map((data) => (
-                  <Flex
-                    justify={"space-between"}
-                    align={"center"}
-                    bg="rgba(255, 255, 255, 0.1)"
-                    rounded={"20px"}
-                    p={3}
-                    mb={2}
-                    key={data.name}
-                  >
-                    <HStack>
-                      <Image
-                        alt=""
-                        w={"35px"}
-                        h={"35px"}
-                        src="/TEDDY 1.0.png"
-                      />
-                      <Box>
-                        <Text fontWeight={"bold"}>{data.name}</Text>
-                        <HStack align={"center"} fontSize={"small"} mt={"-2px"}>
-                          {/* <Text>{data.status} </Text> */}
-                          {/* <Icon as={GoDotFill} /> */}
-                          <Image alt="" src="/coin.png" w={"20px"} h={"20px"} />
-                          <Text color={"yellow.400"} ml={"-5px"}>
-                            {Math.round(data.coinsEarned)}
-                          </Text>
-                        </HStack>
-                      </Box>
-                    </HStack>
-                    <Text color={"yellow.400"}>+{3}k</Text>
-                  </Flex>
+                  <div>
+                  <div className="mb-3 border border-[#1d1d1d] bg-[#282828] w-11/12 mx-auto flex rounded-md px-2 py-2" key={data.name}>
+                    <img src={"/wilson.svg"} height={40} width={40} className="mr-2" />
+                    <p className="pt-2">{data.name}</p>
+                    <p>{Math.round(data.coinsEarned)}</p>
+                </div>
+                <div className="hidden justify-between gap-2">
+                  <img src="/coin.svg" width={20} height={20} alt="coin" />
+                  <p>{Math.round(data.coinsEarned)}</p>
+                  <p className="text-md">+{3}k</p>
+                </div>
+                </div>
                 ))
               )}
-            </Box>
-          </Box>
+          </div>
           <Navbar userId={userData.userId} name={name ? name : ""} />
-        </Box>
-      </Flex>
+        </div>
     )
   )
 }

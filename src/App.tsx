@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
-import Referral from "./pages/Referral"
+import Ref from "./components/Ref"
 import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
@@ -49,7 +49,7 @@ function App() {
           <Route index element={<Home userId={userId} name={name} />} />
           <Route
             path="/referral"
-            element={<Referral userId={userId} name={name} />}
+            element={<Ref userId={userId} name={name} />}
           />
           <Route
             path="/boost"
