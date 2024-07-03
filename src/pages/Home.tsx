@@ -11,7 +11,7 @@ import { keyframes } from "@emotion/react"
 // import WebApp from "@twa-dev/sdk"
 
 import Navbar from "../components/Navbar"
-import { useUserData } from "../hooks/useUserData"
+import { useStaticUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { FaUser } from "react-icons/fa6"
 import { Link, useSearchParams } from "react-router-dom"
@@ -62,7 +62,7 @@ function Home({
   const referralId = Number(params.get("referralId"))
   // const firstName = params.get("name")
 
-  const { userData } = useUserData(userId, name, referralId)
+  const { userData } = useStaticUserData(userId, name, referralId)
 
   const [screenAxis, setScreenAxis] = useState<
     { x: number; y: number; id: number }[]

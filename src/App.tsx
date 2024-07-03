@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
 import Referral from "./pages/Referral"
-import { useUserData } from "./hooks/useUserData"
+import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
 import WebApp from "@twa-dev/sdk"
@@ -24,7 +24,7 @@ function App() {
 
  
 
-  const { isLoading, name } = useUserData(userId, firstName, referralId)
+  const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
   useEffect(() => {
     WebApp.expand()

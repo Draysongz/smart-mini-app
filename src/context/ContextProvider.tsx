@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react"
-import { useUserData } from "../hooks/useUserData"
+import { useStaticUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 
 const Context = createContext({})
@@ -23,7 +23,7 @@ function ContextProvdider({
   const [screenAxis, setScreenAxis] = useState<
     { x: number; y: number; id: number }[]
   >([])
-  const { isLoading, userData, name } = useUserData(
+  const { isLoading, userData, name } = useStaticUserData(
     userId,
     firstName,
     referralId

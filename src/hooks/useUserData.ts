@@ -1,35 +1,85 @@
-import { useEffect, useState } from "react"
-import { getUserData } from "../helper-functions/getUser"
-import { DocumentData } from "firebase/firestore"
+import { useEffect, useState } from "react";
+import { getUserData, setupRealtimeListener } from "../helper-functions/getUser";
+import { DocumentData } from "firebase/firestore";
 
-function useUserData(
+// Hook for real-time updates
+function useRealtimeUserData(
   userId: number | undefined,
   firstName: string | null,
   referralId?: number
 ) {
-  const [userData, setUserData] = useState<DocumentData>()
-  const [isLoading, setIsLoading] = useState(true)
-  const [name, setName] = useState<string | null>(null)
+  const [userData, setUserData] = useState<DocumentData>();
+  const [isLoading, setIsLoading] = useState(true);
+  const [name, setName] = useState<string | null>(null);
+  let unsubscribe: (() => void) | undefined;
+
   useEffect(() => {
-    // eslint-disable-next-line no-extra-semi
-    ;(async () => {
+    const fetchData = async () => {
       try {
-        if (!userId) return
-        if (!firstName) return
-        const data = await getUserData(userId, firstName, referralId)
-        if (!data) return
-        setUserData(data)
-        setName(firstName)
-        setIsLoading(false)
+        if (!userId || !firstName) return;
+        
+        const result = await getUserData(userId, firstName, referralId);
+        if (!result) return;
+        
+        const { data, docId } = result; // Destructure the result
+        setUserData(data);
+        setName(firstName);
+        setIsLoading(false);
+
+        // Set up real-time listener if referralId is defined
+        if (referralId !== undefined && referralId !== null) {
+          unsubscribe = setupRealtimeListener(docId, (updatedData) => {
+            setUserData(updatedData);
+          });
+        }
       } catch (error) {
-        console.log("useUserData", error)
+        console.log("useRealtimeUserData", error);
       }
-    })()
+    };
 
-    return () => {}
-  }, [userId, firstName, referralId])
+    fetchData();
 
-  return { isLoading, userData, name }
+    // Clean up the listener on unmount
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, [userId, firstName, referralId]);
+
+  return { isLoading, userData, name };
 }
 
-export { useUserData }
+// Hook without real-time updates
+function useStaticUserData(
+  userId: number | undefined,
+  firstName: string | null,
+  referralId?: number
+) {
+  const [userData, setUserData] = useState<DocumentData>();
+  const [isLoading, setIsLoading] = useState(true);
+  const [name, setName] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!userId || !firstName) return;
+        
+        const result = await getUserData(userId, firstName, referralId);
+        if (!result) return;
+        
+        const { data } = result; // Destructure the result
+        setUserData(data);
+        setName(firstName);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("useStaticUserData", error);
+      }
+    };
+
+    fetchData();
+  }, [userId, firstName, referralId]);
+
+  return { isLoading, userData, name };
+}
+
+// Export both hooks
+export { useRealtimeUserData, useStaticUserData };

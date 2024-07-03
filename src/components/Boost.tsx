@@ -1,6 +1,6 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Navbar from "./Navbar"
-import { useUserData } from "../hooks/useUserData";
+import { useRealtimeUserData } from "../hooks/useUserData";
 import { useSearchParams } from "react-router-dom";
 import { updateUserData } from "../helper-functions/getUser";
 import {toast} from 'react-toastify'
@@ -15,7 +15,7 @@ const Boost = ({ userId, name }: BoostProps) => {
     const [params] = useSearchParams();
     const referralId = Number(params.get("referralId"));
 
-    const { userData } = useUserData(userId, name, referralId)
+    const { userData } = useRealtimeUserData(userId, name, referralId)
 
 async function upgradeAttribute(userId: number, attribute: string) {
     let cost = 0;

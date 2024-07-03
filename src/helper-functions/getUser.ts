@@ -10,8 +10,11 @@ import {
   arrayUnion,
   FieldValue,
   increment,
+  onSnapshot
+  
 } from "firebase/firestore"
 import { app } from "../firebase/firebase"
+
 
 const db = getFirestore(app)
 
@@ -41,24 +44,42 @@ async function getQuerySnapshot(userId: number) {
 
 async function getUserData(userId: number, name: string, referralId?: number) {
   try {
-    console.log(userId)
-    const qs = await getQuerySnapshot(userId)
-    if (qs.empty) {
-      await createUser(userId, name) // create the user if the user does not exist
-      const qs = await getQuerySnapshot(userId)
-      const data = qs.docs[0].data()
-      if (referralId && referralId != userId) {
-        await updateReferralData(userId, referralId)
+    const userCollectionRef = collection(db, "barni");
+    const userQuery = query(userCollectionRef, where("userId", "==", userId));
+
+    // Query to get the user document snapshot
+    const querySnapshot = await getDocs(userQuery);
+
+    if (querySnapshot.empty) {
+      // User does not exist, create it
+      await createUser(userId, name);
+      const newUserQuerySnapshot = await getDocs(userQuery);
+      const newUserDoc = newUserQuerySnapshot.docs[0];
+      if (referralId && referralId !== userId) {
+        await updateReferralData(userId, referralId);
       }
-      return data
+      const newData = newUserDoc.data();
+      return { data: newData, docId: newUserDoc.id };
+    } else {
+      // User exists, return initial data
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+      return { data: userData, docId: userDoc.id };
     }
-    const data = qs.docs[0].data()
-    // console.log(data)
-    return data
   } catch (err) {
-    console.log(err)
-    return null
+    console.log(err);
+    return null;
   }
+}
+
+function setupRealtimeListener(docId: string, callback: (data: any) => void) {
+  const userDocRef = doc(db, "barni", docId);
+  return onSnapshot(userDocRef, (docSnapshot) => {
+    if (docSnapshot.exists()) {
+      const data = docSnapshot.data();
+      callback(data);
+    }
+  });
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -88,6 +109,7 @@ async function createUser(userId: number, name: string) {
     tapEnergy: 1000,
     tapPower: 1,
     userId: userId,
+    multitapLevel: [],
     referralLink: null
 
   })
@@ -111,4 +133,4 @@ async function updateReferralData(userId: number, referralId: number) {
   }
 }
 
-export { getUserData, updateUserData, getQuerySnapshot }
+export { getUserData, updateUserData, getQuerySnapshot, setupRealtimeListener }

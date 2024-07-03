@@ -4,7 +4,7 @@ import { getQuerySnapshot } from "../helper-functions/getUser"
 import { useEffect, useState } from "react"
 import { DocumentData } from "firebase/firestore"
 import { FaRegCopy } from "react-icons/fa6"
-import { useUserData } from "../hooks/useUserData"
+import { useRealtimeUserData } from "../hooks/useUserData"
 // import Spinner from "../components/Spinner"
 
 // const referralData = [
@@ -44,7 +44,7 @@ function Referral({
   // const userId = Number(params.get("userId"))
   // const referralId = Number(params.get("referralId"))
   // const firstName = params.get("name")
-  const { isLoading, userData } = useUserData(userId, name)
+  const { isLoading, userData } = useRealtimeUserData(userId, name)
   const [referredUsers, setReferredUsers] = useState<DocumentData[]>()
 
   useEffect(() => {
