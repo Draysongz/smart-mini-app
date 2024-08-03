@@ -6,6 +6,9 @@ import {
   Text,
   Icon,
   Spinner,
+  Card,
+  CardBody,
+  Progress,
 } from "@chakra-ui/react"
 import { keyframes } from "@emotion/react"
 // import WebApp from "@twa-dev/sdk"
@@ -15,6 +18,7 @@ import { useStaticUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { FaUser } from "react-icons/fa6"
 import { Link, useSearchParams } from "react-router-dom"
+import { FcFlashOn } from "react-icons/fc"
 
 const floatUpAndFadeOut = keyframes`
   0% {
@@ -151,46 +155,175 @@ function Home({
       <Spinner color="gray.500" />
     </Flex>
   ) : (
-    <Flex height="100%" justify="center" overflow={"hidden"} align="center">
-      <Box width={["100%", "360px"]} height="100%" bg={"black"}>
+    <Flex height="100vh" justify="center" overflow={"hidden"} align="center">
+      <Box width={["100%", "360px"]} height="100%" bg="black">
         <Box p={5} fontWeight="bold" color="white">
           {<Icon as={FaUser} />} {name ? name : ""}
         </Box>
 
-        <Box
+        <Flex
           bg="#1d1d1d"
-          h={"100%"}
+          h={"100vh"}
           roundedTop={"30px"}
           px={5}
           py={8}
           pos={"relative"}
+          bgColor={"#0c3d2c"}
+          direction={"column"}
+          gap={4}
         >
-          <Flex align={"center"} justify={"center"} gap={2} pb={2}>
+          <Flex align={"center"} justify={"center"} gap={2} >
+            {/* <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
+      <Text color={"white"} fontSize={"25px"}>
+        {coinsEarned.toLocaleString()}
+      </Text>
+    </Flex>
+
+    <Flex justify={"center"} align={"center"}>
+    <Image alt="coin" src="/speedometer.svg" w={"30px"} h={"30px"} mr={"1"} />
+          <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
+            {floatingEnergy}/
+            <Text as={"span"} fontSize={"16px"}>
+              {tappingEnergy}
+            </Text>
+          </Text> */}
+
+            <Card
+              border={"2px solid #e7bd52"}
+              borderRadius={"15px"}
+              bg={"#204d3d"}
+              color={"#e7bd52"}
+            >
+              <CardBody>
+                <Flex direction={"column"} gap={2}>
+                  <Text fontSize={"xx-small"} whiteSpace="nowrap">
+                    Earn per tap
+                  </Text>
+                  <Flex alignItems={"center"} justify={"center"} gap={3}>
+                    <Image alt="coin" src="/coin.svg" w={"20px"} h={"20px"} />
+                    <Text
+                      fontSize={"small"}
+                      fontWeight={"bold"}
+                      color={"white"}
+                      whiteSpace="nowrap"
+                    >
+                      +1
+                    </Text>
+                  </Flex>
+                </Flex>
+              </CardBody>
+            </Card>
+
+            {/* second card */}
+            <Card
+              border={"2px solid #e7bd52"}
+              borderRadius={"15px"}
+              w={"35vw"}
+              bg={"#204d3d"}
+              color={"#e7bd52"}
+            >
+              <CardBody>
+                <Flex direction={"column"} gap={2}>
+                  <Text
+                    fontSize={"xx-small"}
+                    textAlign={"center"}
+                    whiteSpace="nowrap"
+                  >
+                    Earn per hour
+                  </Text>
+                  <Flex alignItems={"center"} justify={"center"} gap={3}>
+                    <Image alt="coin" src="/coin.svg" w={"20px"} h={"20px"} />
+                    <Text
+                      fontSize={"small"}
+                      fontWeight={"bold"}
+                      color={"white"}
+                      whiteSpace="nowrap"
+                    >
+                      +1
+                    </Text>
+                  </Flex>
+                </Flex>
+              </CardBody>
+            </Card>
+
+            <Card
+              border={"2px solid #e7bd52"}
+              borderRadius={"15px"}
+              w={"35vw"}
+              bg={"#204d3d"}
+              color={"#e7bd52"}
+            >
+              <CardBody>
+                <Flex direction={"column"} gap={2}>
+                  <Text
+                    fontSize={"xx-small"}
+                    textAlign={"center"}
+                    whiteSpace="nowrap"
+                  >
+                    Energy
+                  </Text>
+                  <Flex alignItems={"center"} justify={"center"}>
+                     <Icon boxSize={4}  as={FcFlashOn} />
+                    <Text
+                      fontWeight={"bold"}
+                      fontSize={"small"}
+                      color={"#fff"}
+                      whiteSpace="nowrap"
+                    >
+                      {floatingEnergy}/
+                      <Text as={"span"} fontSize={"small"} whiteSpace="nowrap">
+                        {tappingEnergy}
+                      </Text>
+                    </Text>
+                  </Flex>
+                </Flex>
+              </CardBody>
+            </Card>
+          </Flex>
+
+          <Flex align={"center"} justify={"center"} gap={2} >
             <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
             <Text color={"white"} fontSize={"25px"}>
               {coinsEarned.toLocaleString()}
-            </Text>
+            </Text>{" "}
+            *
           </Flex>
 
-          <Flex justify={"center"} align={"center"}>
-          <Image alt="coin" src="/speedometer.svg" w={"30px"} h={"30px"} mr={"1"} />
-                <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
-                  {floatingEnergy}/
-                  <Text as={"span"} fontSize={"16px"}>
-                    {tappingEnergy}
-                  </Text>
-                </Text>
-          </Flex>
-
-          <Flex align={"center"} justify={"center"} mt={"30px"} px={5}>
+          <Flex justify={"center"}>
             <Box
-              h={"280px"}
-              w={"280px"}
+              display={"flex"}
+              justifyContent={"center"}
+              w={["100%", "320px"]}
+              overflowY={"hidden"}
+            >
+              <Box w={["90%", "100%"]}>
+                <Flex justify={"center"} align={"center"}>
+                  <Icon boxSize={6} mr={"-4px"} as={FcFlashOn} />
+                  <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
+                    {floatingEnergy}/
+                    <Text as={"span"} fontSize={"16px"}>
+                      {tappingEnergy}
+                    </Text>
+                  </Text>
+                </Flex>
+                <Progress
+                  rounded={"10px"}
+                  value={(floatingEnergy / tappingEnergy) * 100}
+                  min={0}
+                />
+              </Box>
+            </Box>
+          </Flex>
+
+          <Flex align={"center"} justify={"center"}  px={5} >
+            <Box
+          
+              h={"150px"}
+              w={"180px"}
               rounded={"full"}
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
-              position={"relative"}
               onTouchStart={async (e) =>
                 await handleTap(e.touches[0].clientX, e.touches[0].clientY)
               }
@@ -198,24 +331,21 @@ function Home({
               onAnimationEnd={() => setRotateAnim("")}
             >
               <Box
+               
                 bg={"rgba(0,0,0,0)"}
                 rounded={"full"}
-                h={"100%"}
+                h={"10%"}
                 w={"100%"}
                 pos={"absolute"}
                 zIndex={"10"}
               ></Box>
-              <Box
-                h={"120%"}
-                w={"120%"}
-                rounded={"full"}
-              >
-                <Image alt="" src="/mini.svg" width={480} height={480} />
+              <Box rounded={"full"} pt={"25%"}>
+                <Image alt="" src="/mini.svg" width={280} height={["250px", "380px"]} />
               </Box>
             </Box>
           </Flex>
-          {/* <Button onClick={showAlert}>Show alert</Button> */}
-        </Box>
+          
+        </Flex>
 
         {screenAxis.map((screen) => (
           <Text
@@ -229,40 +359,16 @@ function Home({
             onAnimationEnd={() => removeScreen(screen.id)}
             zIndex={"5"}
             fontSize={"30px"}
+            
           >
             +{tappingPower}
           </Text>
         ))}
-
-        <Flex justify={"center"}>
-          <Box
-            pos={"fixed"}
-            display={"flex"}
-            justifyContent={"center"}
-            bg={"#1d1d1d"}
-            bottom={"20"}
-            h={"135px"}
-            w={["100%", "320px"]}
-            overflowY={"hidden"}
-          >
-            <Link to={"/boost"}>
-            <Box w={["90%", "100%"]}>
-              <Flex justify={"center"} align={"center"}>
-                <Text fontWeight={"bold"} fontSize={"18px"} color={"#000"} bgColor={"#fbce47"} border={"1"} borderColor={"#1d1d1d"} px={"8"} py={"3"} rounded={"full"}>
-                  Boost
-                </Text>
-              </Flex>
-              {/* <Progress
-                rounded={"10px"}
-                value={(floatingEnergy / tappingEnergy) * 100}
-                min={0}
-              /> */}
-            </Box>
-            </Link>
-          </Box>
-        </Flex>
-        <Navbar userId={userData.userId} name={name ? name : ""} />
       </Box>
+
+     <Box>
+      <Navbar />
+     </Box>
     </Flex>
   )
 }
