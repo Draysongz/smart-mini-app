@@ -1,23 +1,16 @@
-import { Flex, Box, Image, Icon, Text,
+import { Flex, Icon, Text,
   Menu,
-  MenuButton,
   MenuList,
   Tooltip,
   MenuItem,
-  IconButton
+
 
  } from "@chakra-ui/react"
-import { FaUserGroup } from "react-icons/fa6"
-import { FaFire } from "react-icons/fa"
+
 import { Link } from "react-router-dom"
-import { BiCoinStack } from "react-icons/bi"
 import { useEffect, useState } from "react"
-import { MdDashboard } from "react-icons/md"
 import { GiMiner } from "react-icons/gi"
-import { FaCartArrowDown } from "react-icons/fa6"
 import { MdGroups } from "react-icons/md"
-import { PiHandWithdraw } from "react-icons/pi"
-import { MdCollections } from "react-icons/md"
 import { MdSpaceDashboard } from "react-icons/md"
 import { IoMdWallet } from "react-icons/io"
 import { BiCoin } from "react-icons/bi"
@@ -31,6 +24,7 @@ function Navbar({
   const [activeTab, setActiveTab] = useState("")
   console.log(name);
   console.log(userId);
+  console.log(activeTab);
    const navData = [
     { icon: MdSpaceDashboard, title: "Home", link: "/" },
     { icon: GiMiner, title: "Mine", link: "/boost" },

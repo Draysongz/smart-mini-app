@@ -17,7 +17,7 @@ import Navbar from "../components/Navbar"
 import { useStaticUserData } from "../hooks/useUserData"
 import { updateUserData } from "../helper-functions/getUser"
 import { FaUser } from "react-icons/fa6"
-import { Link, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import { FcFlashOn } from "react-icons/fc"
 
 const floatUpAndFadeOut = keyframes`
@@ -367,7 +367,7 @@ function Home({
       </Box>
 
      <Box>
-      <Navbar />
+      <Navbar userId={userId} name={name} />
      </Box>
     </Flex>
   )
