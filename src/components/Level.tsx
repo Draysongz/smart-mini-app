@@ -1,14 +1,13 @@
 import Navbar from "./Navbar";
-import { useRealtimeUserData } from "../hooks/useUserData";
+// import { useRealtimeUserData } from "../hooks/useUserData";
 import { useSearchParams } from "react-router-dom";
-import { updateUserData } from "../helper-functions/getUser";
-import { toast } from 'react-toastify';
+// import { updateUserData } from "../helper-functions/getUser";
 import { ImCoinEuro } from "react-icons/im";
 import { FaTwitter } from "react-icons/fa";
 import { FaCoins, FaTelegram } from "react-icons/fa6";
 import { FaGift } from "react-icons/fa6";
 import { RiHandCoinFill } from "react-icons/ri";
-import { FaTelegramPlane } from "react-icons/fa";
+// import { FaTelegramPlane } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
 interface LevelProps {
@@ -19,6 +18,7 @@ interface LevelProps {
 const Level = ({ userId, name }: LevelProps) => {
   const [params] = useSearchParams();
   const referralId = Number(params.get("referralId"));
+  console.log(referralId);
 
   return(
     <div className="bg-[#204d3d] text-white h-screen">
