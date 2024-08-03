@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
 import Ref from "./components/Ref"
 import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
@@ -11,6 +10,9 @@ import Level from "./components/Level"
 import Stats from "./pages/Stats"
   import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import { lazy } from "react"
+
+  const Home = lazy(() => import('./pages/Home'));
 function App() {
   const [userId, setUserId] = useState<number>()
   const [firstName, setFirstName] = useState<string | null>(null)

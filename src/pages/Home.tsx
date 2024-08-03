@@ -19,6 +19,7 @@ import { updateUserData } from "../helper-functions/getUser"
 import { FaUser } from "react-icons/fa6"
 import { useSearchParams } from "react-router-dom"
 import { FcFlashOn } from "react-icons/fc"
+import { lazy } from "react"
 
 const floatUpAndFadeOut = keyframes`
   0% {
@@ -48,6 +49,8 @@ const rotateCoinRight = keyframes`
     transform: rotateY(-20deg)
   }
 `
+
+
 function Home({
   userId,
   name,
