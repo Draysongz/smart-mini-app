@@ -1,59 +1,58 @@
-import { useState } from "react";
-import Navbar from "./Navbar"
-import Airdrop from "./Airdrop";
-import Referral from "../pages/Referral";
-import { useRealtimeUserData } from "../hooks/useUserData"
-
-
-const tabs = [
-    { name: "Airdrop", tab: "airdrop", href: "/umbrella.svg" },
-    { name: "Referral", tab: "referral", href: "/gift.svg" },
-  ];
-
+import Navbar from "../components/Navbar"
+import { FaGift } from "react-icons/fa6";
+import { FiRefreshCcw } from "react-icons/fi";
+import { FaRegCopy } from "react-icons/fa6";
+import { IoMdPersonAdd } from "react-icons/io";
 
 const Ref = ({
-    userId,
-    name,
-  }: {
-    userId: number | undefined
-    name: string | null
-  }) => {
-    const [currentTab, setCurrentTab] = useState("airdrop");
-    const { userData } = useRealtimeUserData(userId, name)
-
-    const renderContent = () => {
-        switch (currentTab) {
-          case "airdrop":
-            return <Airdrop key={"airdrop"}/>
-          case "referral":
-            return <Referral key={"referral"} userId={userId} name={name} />;
-          default:
-            return null;
-        }
-      };
-
-    return(
-        userData && (
-        <div className={`bg-[#1d1d1d] h-screen overflow-hidden`}>
-        <div className="mb-8 pt-8 border-b rounded-md pb-4 border-[#fbce47] shadow-lg">
-            <div className="coin border flex justify-between text-white border-[#1d1d1d] bg-[#282828] w-11/12 mx-auto px-2 py-2 mt-4 rounded-md">
-                <h1 className="flex pl-4 text-4xl font-bold"><img src={"/coin.svg"} height={40} width={40} className="mr-1" />{userData?.coinsEarned}</h1>
-                <div className="pr-6">
-                    <p className="text-sm font-normal">Level</p>
-                    <p className="text-sm font-semibold">{userData?.tapPower}</p>
-                </div>
-            </div>
-            <div className="button mt-4 flex justify-center gap-3">
-              {tabs.map((tab, index) => (
-                <button key={index} onClick={() => setCurrentTab(tab.tab)} className={`flex border border-[#1d1d1d] px-2 py-1 rounded-md ${currentTab === tab.tab ? "bg-[#423c2c] text-[#fbce47]" : "bg-[#282828] text-gray-400"}`}><img src={tab.href} height={20} width={20} className="mr-1" />{tab.name}</button>
-              ))}
-            </div>
+  userId,
+  name,
+}: {
+  userId: number | undefined
+  name: string | null
+}) => {
+  return (
+    <div className="bg-[#204d3d] text-white h-screen">
+      <h1 className="pt-16 text-center text-3xl font-semibold">Invite Friends</h1>
+      <p className="pt-2 text-center pb-2">You and your friend will receive bonuses</p>
+      <div className="cards">
+        <div className="flex py-2 gap-4 border border-[#f0b732] rounded-md w-11/12 mx-auto bg">
+            <FaGift className="w-8 h-8 mt-2 ml-2 text-gray-800" />
+          <div>
+            <p>Invite a friend</p>
+            <p><span className="text-yellow-500">+5000</span> for you and your friend</p>
+          </div>
         </div>
-        <div>{renderContent()}</div>
-        <Navbar userId={userData.userId} name={name ? name : ""} />
+        <div className="flex py-2 gap-4 border border-[#f0b732] rounded-md w-11/12 mx-auto mt-3">
+            <FaGift className="w-8 h-8 mt-2 ml-2" />
+          <div>
+            <p>Invite a friend with Telegram Premium</p>
+            <p><span className="text-yellow-500">+5000</span> for you and your friend</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="flex justify-between mt-4">
+          <h1 className="ml-2 font-semibold">Friend list</h1>
+          <FiRefreshCcw className="w-5 h-5 mr-2" />
+        </div>
+        {/* For the API */}
+        <div className="py-6 text-center mt-3 border w-11/12 rounded-md mx-auto border-[#f0b732]">
+          You have not invited anyone yet
+        </div>
+        <div className="hidden border w-11/12 rounded-md mx-auto border-[#f0b732]">
+          <p>Samad Olawale</p>
+        </div>
+      </div>
+      <div className="flex mt-32">
+        <button className="w-10/12 py-2 flex justify-center rounded-lg mx-auto border border-[#f0b732] "><IoMdPersonAdd className="w-5 h-5 mt-0.5 mr-2" />Invite a Friend</button>
+        <div className="border mr-2 px-1 rounded-md border-[#f0b732]">
+          <FaRegCopy className="mt-1.5 w-6 h-6" />
+        </div>
+      </div>
+    <Navbar userId={userId} name={name} />
     </div>
-        )
-    )
+  )
 }
 
 export default Ref
