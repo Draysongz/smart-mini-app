@@ -3,8 +3,8 @@ import Ref from "./components/Ref"
 import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
-import WebApp from "@twa-dev/sdk"
-import { useEffect, useState } from "react"
+// import WebApp from "@twa-dev/sdk"
+// import { useEffect, useState } from "react"
 import Boost from "./components/Boost"
 import Level from "./components/Level"
 import Stats from "./pages/Stats"
@@ -14,28 +14,28 @@ import Stats from "./pages/Stats"
 
   const Home = lazy(() => import('./pages/Home'));
 function App() {
-  const [userId, setUserId] = useState<number>()
-  const [firstName, setFirstName] = useState<string | null>(null)
-  const params = new URLSearchParams(location.search)
-  const referralId = Number(params.get("referralId"))
+  // const [userId, setUserId] = useState<number>()
+  // const [firstName, setFirstName] = useState<string | null>(null)
+  // const params = new URLSearchParams(location.search)
+  // const referralId = Number(params.get("referralId"))
 
-  // const userId = 2146305061
-  // const firstName = 'habibilord'
-  // const referralId =123
+  const userId = 2146305061
+  const firstName = 'habibilord'
+  const referralId =123
   // const firstName = params.get("name")
 
  
 
   const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
-  useEffect(() => {
-    WebApp.expand()
-    const id = WebApp.initDataUnsafe.user?.id
-    const name = WebApp.initDataUnsafe.user?.first_name || null
-    if (!id && !name) return
-    setUserId(id)
-    setFirstName(name)
-  }, [])
+  // useEffect(() => {
+  //   WebApp.expand()
+  //   const id = WebApp.initDataUnsafe.user?.id
+  //   const name = WebApp.initDataUnsafe.user?.first_name || null
+  //   if (!id && !name) return
+  //   setUserId(id)
+  //   setFirstName(name)
+  // }, [])
 
   if (isLoading) {
     return <Spinner />
