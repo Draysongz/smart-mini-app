@@ -1,10 +1,10 @@
-import { BsThreeDotsVertical } from "react-icons/bs";
+// import { BsThreeDotsVertical } from "react-icons/bs";
 import Navbar from "./Navbar"
 import { ImCoinEuro } from "react-icons/im";
-import { useRealtimeUserData } from "../hooks/useUserData";
-import { useSearchParams } from "react-router-dom";
-import { updateUserData } from "../helper-functions/getUser";
-import {toast} from 'react-toastify'
+// import { useRealtimeUserData } from "../hooks/useUserData";
+// import { useSearchParams } from "react-router-dom";
+// import { updateUserData } from "../helper-functions/getUser";
+// import {toast} from 'react-toastify'
 
 
 interface BoostProps{
@@ -14,7 +14,7 @@ interface BoostProps{
 
 const Boost = ({ userId, name }: BoostProps) => {
     return (
-        <div className={`bg-[#204d3d] pt-12 h-full min-h-screen text-white`}>
+        <div className={`bg-[#204d3d] pt-12 text-white`}>
             <h1 className="flex text-3xl font-semibold justify-center"><ImCoinEuro className="w-8 h-8 text-yellow-500 mt-1 mr-1.5 font-bold" /> 102</h1>
             <p className="text-yellow-500 font-semibold text-lg mt-1 text-center">Earn per hour <span className="text-white">+0</span></p>
             <div className="flex justify-center gap-2 mt-8 ml-2">

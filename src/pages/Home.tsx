@@ -152,6 +152,22 @@ function Home({
     return timeNowInSeconds - lastUpdate
   }
 
+
+  //   const formatProfitPerHour = (profit: number) => {
+  //   if (profit >= 1000000000) return `+${(profit / 1000000000).toFixed(2)}B`;
+  //   if (profit >= 1000000) return `+${(profit / 1000000).toFixed(2)}M`;
+  //   if (profit >= 1000) return `+${(profit / 1000).toFixed(2)}K`;
+  //   return `+${profit}`;
+  // };
+
+  // useEffect(() => {
+  //   const pointsPerSecond = Math.floor(profitPerHour / 3600);
+  //   const interval = setInterval(() => {
+  //     setPoints((prevPoints) => prevPoints + pointsPerSecond);
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [profitPerHour]);
+
   return !userData ? (
     <Flex height="100%" justify="center" overflow={"hidden"} align="center">
       <Spinner color="gray.500" />
@@ -170,7 +186,7 @@ function Home({
           px={5}
           py={8}
           pos={"relative"}
-          bgColor={"#0c3d2c"}
+          bgColor={"#228c32"}
           direction={"column"}
           gap={4}
         >
@@ -191,10 +207,10 @@ function Home({
           </Text> */}
 
             <Card
-              border={"2px solid #e7bd52"}
+              border={"2px solid #f0b732"}
               borderRadius={"15px"}
-              bg={"#204d3d"}
-              color={"#e7bd52"}
+              bg={"transparent"}
+              color={"#f0b732"}
             >
               <CardBody>
                 <Flex direction={"column"} gap={2}>
@@ -218,11 +234,11 @@ function Home({
 
             {/* second card */}
             <Card
-              border={"2px solid #e7bd52"}
+                border={"2px solid #f0b732"}
               borderRadius={"15px"}
+              bg={"transparent"}
+              color={"#f0b732"}
               w={"35vw"}
-              bg={"#204d3d"}
-              color={"#e7bd52"}
             >
               <CardBody>
                 <Flex direction={"column"} gap={2}>
@@ -249,11 +265,11 @@ function Home({
             </Card>
 
             <Card
-              border={"2px solid #e7bd52"}
+               border={"2px solid #f0b732"}
               borderRadius={"15px"}
+              bg={"transparent"}
+              color={"#f0b732"}
               w={"35vw"}
-              bg={"#204d3d"}
-              color={"#e7bd52"}
             >
               <CardBody>
                 <Flex direction={"column"} gap={2}>
@@ -312,6 +328,7 @@ function Home({
                   rounded={"10px"}
                   value={(floatingEnergy / tappingEnergy) * 100}
                   min={0}
+                  colorScheme="yellow"
                 />
               </Box>
             </Box>
