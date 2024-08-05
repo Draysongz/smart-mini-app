@@ -13,50 +13,6 @@ interface BoostProps{
 }
 
 const Boost = ({ userId, name }: BoostProps) => {
-    const [params] = useSearchParams();
-    const referralId = Number(params.get("referralId"));
-
-    const { userData } = useRealtimeUserData(userId, name, referralId)
-
-async function upgradeAttribute(userId: number, attribute: string) {
-    let cost = 0;
-    let level = 1;
-
-    // Determine cost and level increment based on attribute
-    switch (attribute) {
-        case 'tapPower':
-            cost = 200 * userData?.tapPower; // Example cost calculation, adjust as per your logic
-            level = userData?.tapPower + 1;
-            break;
-        case 'tapEnergy':
-            cost = 200 * (userData?.tapEnergy / 1000); // Example cost calculation
-            level = userData?.tapEnergy * 2;
-            break;
-        // Add cases for other attributes as needed
-        default:
-            console.log('Invalid attribute');
-            return;
-    }
-
-    // Check if user has enough coins
-    if (userData?.coinsEarned < cost) {
-        alert('Not enough coins to upgrade');
-        return;
-    }
-
-    // Deduct the cost from user's coins
-    const updates = {
-        coinsEarned: userData?.coinsEarned - cost,
-        [attribute]: level, // Dynamically update the attribute
-    };
-
-    // Update user data in the database
-    await updateUserData(userId, updates);
-    toast.success(`${attribute} upgrade successful`)
-
-  
-}
-
     return (
         <div className={`bg-[#204d3d] pt-12 h-full min-h-screen text-white`}>
             <h1 className="flex text-3xl font-semibold justify-center"><ImCoinEuro className="w-8 h-8 text-yellow-500 mt-1 mr-1.5 font-bold" /> 102</h1>
