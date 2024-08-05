@@ -12,7 +12,7 @@ const Ref = ({
   name: string | null
 }) => {
   return (
-    <div className="bg-[#204d3d] text-white h-screen">
+    <div className="bg-[#204d3d] text-white h-full min-h-screen">
       <h1 className="pt-16 text-center text-3xl font-semibold">Invite Friends</h1>
       <p className="pt-2 text-center pb-2">You and your friend will receive bonuses</p>
       <div className="cards">

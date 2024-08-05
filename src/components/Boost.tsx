@@ -1,5 +1,6 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Navbar from "./Navbar"
+import { ImCoinEuro } from "react-icons/im";
 import { useRealtimeUserData } from "../hooks/useUserData";
 import { useSearchParams } from "react-router-dom";
 import { updateUserData } from "../helper-functions/getUser";
@@ -57,123 +58,76 @@ async function upgradeAttribute(userId: number, attribute: string) {
 }
 
     return (
-        <div className={`bg-[#1d1d1d] h-screen text-white`}>
-            <div className="mb-8 pt-8 border-b rounded-md pb-4 border-[#fbce47]">
-                <div className="flex justify-between">
-                    <div className="text-white pl-6 cursor-pointer">
-                        <h1 className="flex text-xl text-semibold">
-                            <img src={"/left.svg"} height={9} width={9} className="mr-3" /> Home
-                        </h1>
-                    </div>
-                    <div className="mr-4 text-white">
-                        <BsThreeDotsVertical className="w-7 h-7" />
-                    </div>
+        <div className={`bg-[#204d3d] pt-12 h-full min-h-screen text-white`}>
+            <h1 className="flex text-3xl font-semibold justify-center"><ImCoinEuro className="w-8 h-8 text-yellow-500 mt-1 mr-1.5 font-bold" /> 102</h1>
+            <p className="text-yellow-500 font-semibold text-lg mt-1 text-center">Earn per hour <span className="text-white">+0</span></p>
+            <div className="flex justify-center gap-2 mt-8 ml-2">
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12 cursor-pointer">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">Blockchain</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-1 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
                 </div>
-                <div className="coin border flex justify-between text-white border-[#1d1d1d] bg-[#282828] w-11/12 mx-auto px-2 py-2 mt-4 rounded-md">
-                    <h1 className="flex pl-4 text-4xl font-bold">
-                        <img src={"/coin.svg"} height={40} width={40} className="mr-1" />
-                        {userData?.coinsEarned}
-                    </h1>
-                    <div className="pr-6">
-                        <p className="text-sm font-normal">Level</p>
-                        <p className="text-sm font-semibold">{userData?.tapPower}</p>
-                    </div>
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">Coin</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-2 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
                 </div>
-            </div>
-            <div className="daily mb-6">
-                <p className="pl-4 pb-4">Daily boosters:</p>
-                <div className="flex">
-                    <div className="1 flex border w-5/12 px-2 py-2 border-[#1d1d1d] bg-[#282828] ml-6 rounded-md mr-2">
-                        <img src={"/touch.svg"} height={25} width={25} className="mr-1" />
-                        <div>
-                            <p className="text-sm">Tapping guru</p>
-                            <p>3/3</p>
-                        </div>
-                    </div>
-                    <div className='2 flex border w-5/12 px-2 py-2 border-[#1d1d1d] bg-[#282828] rounded-md'>
-                        <img src={"/mark.svg"} width={22} height={22} className='mr-2' />
-                        <div>
-                            <p className="text-sm">Full tank</p>
-                            <p>3/3</p>
-                        </div>
-                    </div>
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">Token</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-1.5 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
                 </div>
             </div>
-            <div className="boosters">
-                <h1 className='pl-4 pb-4'>Boosters:</h1>
-                <div className="boooose">
-                    <div
-                        className="flex mb-2 justify-between border py-2 rounded-md px-2 w-11/12 mx-auto border-[#1d1d1d] bg-[#282828]"
-                        onClick={() => upgradeAttribute(userId!, 'tapPower')}
-                    >
-                        <div className="first flex">
-                            <img src={"/click.svg"} width={22} height={22} className="mr-2" />
-                            <div>
-                                <p className="text-sm">Multitap</p>
-                                <p className="flex text-sm">
-                                    <img src={"/coin.svg"} width={18} height={18} className="mr-1" />
-                                    {200 * userData?.tapPower} | Level {userData?.tapPower}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="second">
-                            <img src={"/right.svg"} width={8} height={8} className="pt-3 mr-2" />
-                        </div>
-                    </div>
-                    <div
-                        className="flex mb-2 justify-between border py-2 rounded-md px-2 w-11/12 mx-auto border-[#1d1d1d] bg-[#282828]"
-                        onClick={() => upgradeAttribute(userId!, 'tapEnergy')}
-                    >
-                        <div className="first flex">
-                            <img src={"/energy.svg"} width={22} height={22} className="mr-2" />
-                            <div>
-                                <p className="text-sm">Energy limit</p>
-                                <p className="flex text-sm">
-                                    <img src={"/coin.svg"} width={18} height={18} className="mr-1" />
-                                    {200 * (userData?.tapEnergy / 1000)} | Level {(userData?.tapEnergy)/1000}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="second">
-                            <img src={"/right.svg"} width={8} height={8} className="pt-3 mr-2" />
-                        </div>
-                    </div>
-                    <div
-                        className="flex mb-2 justify-between border py-2 rounded-md px-2 w-11/12 mx-auto border-[#1d1d1d] bg-[#282828]"
-                       
-                    >
-                        <div className="first flex">
-                            <img src={"/recharge.svg"} width={15} height={15} className="mr-2" />
-                            <div>
-                                <p className="text-sm">Recharging speed</p>
-                                <p className="flex text-sm">
-                                    <img src={"/coin.svg"} width={18} height={18} className="mr-1" />
-                                    200 | Level {userData?.rechargeLevel}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="second">
-                            <img src={"/right.svg"} width={8} height={8} className="pt-3 mr-2" />
-                        </div>
-                    </div>
-                    <div
-                        className="flex justify-between border py-2 rounded-md px-2 w-11/12 mx-auto border-[#1d1d1d] bg-[#282828]"
-                       
-                    >
-                        <div className="first flex">
-                            <img src={"/bot.svg"} width={22} height={22} className="mr-2" />
-                            <div>
-                                <p className="text-sm">Tap bot</p>
-                                <p className="flex text-sm">
-                                    <img src={"/coin.svg"} width={18} height={18} className="mr-1" />
-                                    200 | Level {userData?.tapbotLevel}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="second">
-                            <img src={"/right.svg"} width={8} height={8} className="pt-3 mr-2" />
-                        </div>
-                    </div>
+            <div className="flex justify-center gap-2 mt-4 ml-2">
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">Hash</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-1 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
+                </div>
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">Mining</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-2 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
+                </div>
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">BTC</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-1.5 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
+                </div>
+            </div>
+            <div className="flex justify-center gap-2 mt-4 mb-64 ml-2">
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">ETH</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-1 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
+                </div>
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">Altcoins</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-2 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
+                </div>
+                <div className="card border-2 border-[#f0b732] rounded-md w-3.5/12">
+                    <h1 className="text-lg text-center font-semibold pb-1.5">TON</h1><hr/>
+                    <p className="text-right font-medium pr-2">0 LvL</p>
+                    <ImCoinEuro className="mx-auto text-yellow-600 w-16 h-16" />
+                    <p className="px-1.5 text-center pt-2 font-semibold pb-2">Earn per hour</p>
+                    <p className="border-t flex gap-1 justify-center text-lg pb-3 pt-2 font-semibold"><ImCoinEuro className="w-6 h-6 text-gray-800 mt-0.5" /> 750</p>
                 </div>
             </div>
             <Navbar userId={userId} name={name} />
