@@ -363,6 +363,7 @@ function Home({
               p={10}
               mt={"40%"}
                h={'60vh'} 
+               boxShadow={"0, 10, 20, 30   "}
               w={"60vw"} >
                 <Image alt="" src="/tap.png" width={280} mt={"-10%"}  />
               </Box>
