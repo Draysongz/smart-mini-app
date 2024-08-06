@@ -1,18 +1,20 @@
+import { lazy } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import Ref from "./components/Ref"
 import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
 import { ContextProvdider } from "./context/ContextProvider"
 // import WebApp from "@twa-dev/sdk"
 // import { useEffect, useState } from "react"
-import Boost from "./components/Boost"
+// import Boost from "./components/Boost"
 import Level from "./components/Level"
 import Stats from "./pages/Stats"
-  import { ToastContainer } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-  import { lazy } from "react"
+import Boost from "./pages/Boost"
 
-  const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import("./pages/Home"))
 function App() {
   // const [userId, setUserId] = useState<number>()
   // const [firstName, setFirstName] = useState<string | null>(null)
@@ -20,11 +22,9 @@ function App() {
   // const referralId = Number(params.get("referralId"))
 
   const userId = 2146305061
-  const firstName = 'habibilord'
-  const referralId =123
+  const firstName = "habibilord"
+  const referralId = 123
   // const firstName = params.get("name")
-
- 
 
   const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
