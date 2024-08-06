@@ -40,7 +40,7 @@ const Boost = ({ userId, name }: BoostProps) => {
             <button
               className={`${
                 activeTab == index ? "bg-slate-950/50" : ""
-              } px-2 text-sm font-bold rounded-xl`}
+              } px-2 text-sm font-bold rounded-xl w-32`}
               onClick={() => setActiveTab(index)}
             >
               {tab}
