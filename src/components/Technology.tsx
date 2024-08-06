@@ -31,7 +31,7 @@ const techCards = [
 
 export default function Technology() {
   return (
-    <div className="flex flex-wrap justify-between gap-5 pb-32">
+    <div className="grid grid-cols-3 justify-between gap-4 pb-32">
       {techCards.map((card) => (
         <TechnologyCard
           key={card.name}
@@ -53,25 +53,23 @@ type PropType = {
 function TechnologyCard({ name, perHr, price }: PropType) {
   return (
     <div className="mt-4">
-      <div className="bg-[rgba(0,0,0,0.4)] w-44  rounded-xl">
+      <div className="bg-[rgba(0,0,0,0.4)] w-[105px] rounded-xl">
         <div className="px-2 py-1 flex flex-col justify-center items-center">
-          <p className="font-bold text-[19px] text-center pb-2 border-b-[1px] w-full">
+          <p className="font-bold text-sm text-center pb-2 border-b-[1px] w-full">
             {name}
           </p>
-          <p className="w-full mt-2 font-bold text-lg text-right">0 lvl</p>
-          <ImCoinEuro className="text-8xl mt-[-15px]" />
-          <p className="font-bold text-lg mt-3">Earn per hour</p>
+          <p className="w-full mt-2 font-semibold text-sm text-right">0 lvl</p>
+          <ImCoinEuro className="w-16 h-16 mt-[-5px]" />
+          <p className="font-semibold text-[12px] mt-3">Earn per hour</p>
           <div className="flex items-center gap-1 mt-1">
-            <ImCoinEuro className="text-yellow-400 font-bold text-xl" />
-            <p className="text-yellow-400 font-bold text-xl">+{perHr}</p>
+            <ImCoinEuro className="text-yellow-400 font-bold text-16" />
+            <p className="text-yellow-400 font-bold text-sm">+{perHr}</p>
           </div>
         </div>
 
         <div className="bg-[rgba(0,0,0,0.5)] rounded-xl h-14 flex justify-center items-center gap-2">
-          <ImCoinEuro className="text-yellow-400 font-bold text-3xl" />
-          <button className="text-yellow-400 font-bold text-2xl">
-            {price}
-          </button>
+          <ImCoinEuro className="text-yellow-400 font-bold " />
+          <button className="text-yellow-400 font-bold text-sm">{price}</button>
         </div>
       </div>
     </div>
