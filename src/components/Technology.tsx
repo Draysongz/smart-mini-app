@@ -31,7 +31,7 @@ const techCards = [
 
 export default function Technology() {
   return (
-    <div className="grid grid-cols-3 justify-between gap-4 pb-32">
+    <div className="grid grid-cols-3 justify-between gap-2 pb-32 mt-4">
       {techCards.map((card) => (
         <TechnologyCard
           key={card.name}
@@ -52,7 +52,7 @@ type PropType = {
 
 function TechnologyCard({ name, perHr, price }: PropType) {
   return (
-    <div className="mt-4">
+    <div className="">
       <div className="bg-[rgba(0,0,0,0.4)] w-auto rounded-xl">
         <div className="px-2 py-1 flex flex-col justify-center items-center">
           <p className="font-bold text-sm text-center pb-2 border-b-[1px] w-full">

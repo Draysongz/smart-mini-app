@@ -2,28 +2,28 @@ import { ImCoinEuro } from "react-icons/im"
 
 const businessCards = [
   {
-    name: "Suit",
+    name: "Splitting 1.0",
     perHr: 95,
     price: 750,
   },
   {
-    name: "Shoes",
+    name: "Splitting 2.0",
     perHr: 115,
     price: 500,
   },
   {
-    name: "Tie",
+    name: "Splitting 3.0",
     perHr: 51,
     price: 2000,
   },
   {
-    name: "Briefcase",
+    name: "SPLIT",
     perHr: 150,
     price: 3500,
   },
 
   {
-    name: "Watch",
+    name: "Freezing",
     perHr: 217,
     price: 1750,
   },
@@ -31,7 +31,7 @@ const businessCards = [
 
 export default function Business() {
   return (
-    <div className="grid grid-cols-3 justify-between gap-4 pb-32">
+    <div className="grid grid-cols-3 justify-between gap-2 mt-4 pb-32">
       {businessCards.map((card) => (
         <BusinessCard
           key={card.name}
@@ -52,7 +52,7 @@ type PropType = {
 
 function BusinessCard({ name, perHr, price }: PropType) {
   return (
-    <div className="mt-4">
+    <div className="">
       <div className="bg-[rgba(0,0,0,0.4)] w-auto rounded-xl">
         <div className="px-2 py-1 flex flex-col justify-center items-center">
           <p className="font-bold text-sm text-center pb-2 border-b-[1px] w-full">
