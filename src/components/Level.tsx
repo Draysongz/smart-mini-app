@@ -21,7 +21,7 @@ const Level = ({ userId, name }: LevelProps) => {
   console.log(referralId);
 
   return(
-    <div className="bg-[#204d3d] text-white h-full min-h-screen">
+    <div className="bg-[#204d3d] text-white min-h-screen">
       <div className="flex flex-col items-center pt-16 pb-8">
         <ImCoinEuro className="text-[#f0b732] w-24 h-24" />
         <p className="pt-2 text-3xl font-semibold">Earn more coins</p>
