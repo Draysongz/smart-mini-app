@@ -53,7 +53,7 @@ type PropType = {
 function TechnologyCard({ name, perHr, price }: PropType) {
   return (
     <div className="mt-4">
-      <div className="bg-[rgba(0,0,0,0.4)] w-[105px] rounded-xl">
+      <div className="bg-[rgba(0,0,0,0.4)] w-auto rounded-xl">
         <div className="px-2 py-1 flex flex-col justify-center items-center">
           <p className="font-bold text-sm text-center pb-2 border-b-[1px] w-full">
             {name}
