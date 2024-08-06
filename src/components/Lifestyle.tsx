@@ -2,28 +2,28 @@ import { ImCoinEuro } from "react-icons/im"
 
 const lifestyleCards = [
   {
-    name: "Blockchain",
+    name: "Suit",
     perHr: 95,
     price: 750,
   },
   {
-    name: "Coin",
+    name: "Shoes",
     perHr: 115,
     price: 500,
   },
   {
-    name: "Token",
+    name: "Tie",
     perHr: 51,
     price: 2000,
   },
   {
-    name: "Hash",
+    name: "Briefcase",
     perHr: 150,
     price: 3500,
   },
 
   {
-    name: "Mininig",
+    name: "Watch",
     perHr: 217,
     price: 1750,
   },
