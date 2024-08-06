@@ -343,6 +343,7 @@ function Home({
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
+              flexDirection={"column"}
               onTouchStart={async (e) =>
                 await handleTap(e.touches[0].clientX, e.touches[0].clientY)
               }
@@ -358,8 +359,12 @@ function Home({
                 pos={"absolute"}
                 zIndex={"10"}
               ></Box>
-              <Box rounded={"full"} pt={"25%"}>
-                <Image alt="" src="/mini.svg" width={280} height={["250px", "380px"]} />
+              <Box rounded={"50%"}  bgColor={"#f0b732"}
+              p={10}
+              mt={"40%"}
+               h={'60vh'} 
+              w={"60vw"} >
+                <Image alt="" src="/tap.png" width={280} mt={"-10%"}  />
               </Box>
             </Box>
           </Flex>
