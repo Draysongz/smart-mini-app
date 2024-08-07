@@ -49,7 +49,6 @@ const rotateCoinRight = keyframes`
   }
 `
 
-
 function Home({
   userId,
   name,
@@ -152,7 +151,6 @@ function Home({
     return timeNowInSeconds - lastUpdate
   }
 
-
   //   const formatProfitPerHour = (profit: number) => {
   //   if (profit >= 1000000000) return `+${(profit / 1000000000).toFixed(2)}B`;
   //   if (profit >= 1000000) return `+${(profit / 1000000).toFixed(2)}M`;
@@ -186,38 +184,27 @@ function Home({
           px={5}
           py={8}
           pos={"relative"}
-          bgColor={"#228c32"}
+          bgColor={"#204d3d"}
           direction={"column"}
           gap={4}
         >
-          <Flex align={"center"} justify={"center"} gap={2} >
-            {/* <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
-      <Text color={"white"} fontSize={"25px"}>
-        {coinsEarned.toLocaleString()}
-      </Text>
-    </Flex>
-
-    <Flex justify={"center"} align={"center"}>
-    <Image alt="coin" src="/speedometer.svg" w={"30px"} h={"30px"} mr={"1"} />
-          <Text fontWeight={"bold"} fontSize={"18px"} color={"#fff"}>
-            {floatingEnergy}/
-            <Text as={"span"} fontSize={"16px"}>
-              {tappingEnergy}
-            </Text>
-          </Text> */}
-
+          <Flex align={"center"} justify={"center"} gap={2}>
             <Card
-              border={"2px solid #f0b732"}
+              bg={"rgba(0,0,0,0.4)"}
               borderRadius={"15px"}
-              bg={"transparent"}
               color={"#f0b732"}
             >
               <CardBody>
-                <Flex direction={"column"} gap={2}>
-                  <Text fontSize={"xx-small"} whiteSpace="nowrap">
+                <Flex
+                  direction={"column"}
+                  justify={"center"}
+                  alignItems={"center"}
+                  gap={1}
+                >
+                  <Text fontSize={"x-small"} whiteSpace="nowrap">
                     Earn per tap
                   </Text>
-                  <Flex alignItems={"center"} justify={"center"} gap={3}>
+                  <Flex alignItems={"center"} justify={"center"} gap={2}>
                     <Image alt="coin" src="/coin.svg" w={"20px"} h={"20px"} />
                     <Text
                       fontSize={"small"}
@@ -234,22 +221,26 @@ function Home({
 
             {/* second card */}
             <Card
-                border={"2px solid #f0b732"}
               borderRadius={"15px"}
-              bg={"transparent"}
+              bg={"rgba(0,0,0,0.4)"}
               color={"#f0b732"}
               w={"35vw"}
             >
               <CardBody>
-                <Flex direction={"column"} gap={2}>
+                <Flex
+                  direction={"column"}
+                  justify={"center"}
+                  alignItems={"center"}
+                  gap={1}
+                >
                   <Text
-                    fontSize={"xx-small"}
+                    fontSize={"x-small"}
                     textAlign={"center"}
                     whiteSpace="nowrap"
                   >
                     Earn per hour
                   </Text>
-                  <Flex alignItems={"center"} justify={"center"} gap={3}>
+                  <Flex alignItems={"center"} justify={"center"} gap={2}>
                     <Image alt="coin" src="/coin.svg" w={"20px"} h={"20px"} />
                     <Text
                       fontSize={"small"}
@@ -265,23 +256,23 @@ function Home({
             </Card>
 
             <Card
-               border={"2px solid #f0b732"}
               borderRadius={"15px"}
-              bg={"transparent"}
+              bg={"rgba(0,0,0,0.4)"}
               color={"#f0b732"}
               w={"35vw"}
             >
               <CardBody>
-                <Flex direction={"column"} gap={2}>
-                  <Text
-                    fontSize={"xx-small"}
-                    textAlign={"center"}
-                    whiteSpace="nowrap"
-                  >
+                <Flex
+                  direction={"column"}
+                  justify={"center"}
+                  alignItems={"center"}
+                  gap={1}
+                >
+                  <Text fontSize={"x-small"} whiteSpace="nowrap">
                     Energy
                   </Text>
                   <Flex alignItems={"center"} justify={"center"}>
-                     <Icon boxSize={4}  as={FcFlashOn} />
+                    <Icon boxSize={4} as={FcFlashOn} />
                     <Text
                       fontWeight={"bold"}
                       fontSize={"small"}
@@ -299,7 +290,7 @@ function Home({
             </Card>
           </Flex>
 
-          <Flex align={"center"} justify={"center"} gap={2} >
+          <Flex align={"center"} justify={"center"} gap={2}>
             <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
             <Text color={"white"} fontSize={"25px"}>
               {coinsEarned.toLocaleString()}
@@ -334,9 +325,8 @@ function Home({
             </Box>
           </Flex>
 
-          <Flex align={"center"} justify={"center"}  px={5} >
+          <Flex align={"center"} justify={"center"} px={5}>
             <Box
-          
               h={"150px"}
               w={"180px"}
               rounded={"full"}
@@ -351,7 +341,6 @@ function Home({
               onAnimationEnd={() => setRotateAnim("")}
             >
               <Box
-               
                 bg={"rgba(0,0,0,0)"}
                 rounded={"full"}
                 h={"10%"}
@@ -359,17 +348,20 @@ function Home({
                 pos={"absolute"}
                 zIndex={"10"}
               ></Box>
-              <Box rounded={"50%"}  bgColor={"#f0b732"}
-              p={10}
-              mt={"40%"}
-               h={'60vh'} 
-               boxShadow={"0, 10, 20, 30   "}
-              w={"60vw"} >
-                <Image alt="" src="/tap.png" width={280} mt={"-10%"}  />
+              <Box
+                rounded={"50%"}
+                bgColor={"rgba(0,0,0,0.4)"}
+                p={10}
+                mt={"40%"}
+                h={"60vh"}
+                boxShadow={"0, 10, 20, 30   "}
+                w={"60vw"}
+                display={"flex"}
+              >
+                <Image alt="" src="/tap.png" width={"400px"} mt={"-10%"} />
               </Box>
             </Box>
           </Flex>
-          
         </Flex>
 
         {screenAxis.map((screen) => (
@@ -384,16 +376,15 @@ function Home({
             onAnimationEnd={() => removeScreen(screen.id)}
             zIndex={"5"}
             fontSize={"30px"}
-            
           >
             +{tappingPower}
           </Text>
         ))}
       </Box>
 
-     <Box>
-      <Navbar userId={userId} name={name} />
-     </Box>
+      <Box>
+        <Navbar userId={userId} name={name} />
+      </Box>
     </Flex>
   )
 }

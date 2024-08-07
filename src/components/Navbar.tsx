@@ -1,11 +1,12 @@
-import { Flex, Icon, Text,
+import {
+  Flex,
+  Icon,
+  Text,
   Menu,
   MenuList,
   Tooltip,
   MenuItem,
-
-
- } from "@chakra-ui/react"
+} from "@chakra-ui/react"
 
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -22,16 +23,16 @@ function Navbar({
   name: string | null
 }) {
   const [activeTab, setActiveTab] = useState("")
-  console.log(name);
-  console.log(userId);
-  console.log(activeTab);
-   const navData = [
+  console.log(name)
+  console.log(userId)
+  console.log(activeTab)
+  const navData = [
     { icon: MdSpaceDashboard, title: "Home", link: "/" },
     { icon: GiMiner, title: "Mine", link: "/boost" },
     { icon: IoMdWallet, title: "Earn", link: "/tasks" },
-         { icon: MdGroups, title: "Referrals", link: "/referral" },
-          { icon: BiCoin, title: "Airdrop", link: "/airdrop" },
-  ];
+    { icon: MdGroups, title: "Referrals", link: "/referral" },
+    { icon: BiCoin, title: "Airdrop", link: "/airdrop" },
+  ]
   useEffect(() => {
     const path = location.pathname
     if (path == "/") {
@@ -153,56 +154,52 @@ function Navbar({
     //     </Box>
     //   </Box>
     // </Flex>
-      <Flex
-          position="fixed"
-          bottom={0}
-          left={0}
-          right={0}
-          p={5}
-          bg={"#204d3d"}
-          justifyContent="space-around"
-          zIndex={1}
-           border={"2px solid #e7bd52"}
-          borderBottomRadius={"10px"}
+    <Flex
+      position="fixed"
+      bottom={0}
+      left={0}
+      right={0}
+      p={5}
+      bg={"#204d3d"}
+      justifyContent="space-around"
+      zIndex={1}
+      bg={"rgba(0,0,0,0.4)"}
+      borderTopRadius={"30px"}
+    >
+      {navData.slice(0, 5).map((item, index) => (
+        <Tooltip
+          label={`${index == 1 ? "Coming soon" : ""}`}
+          hasArrow={index == 1 ? true : false}
+          placement="top"
         >
-          {navData.slice(0, 5).map((item, index) => (
-            <Tooltip
-              label={`${index == 1 ? "Coming soon" : ""}`}
-              hasArrow={index == 1 ? true : false}
-              placement="top"
-            >
-              <Flex
-                key={item.title}
-                flexDir="column"
-                align="center"
-                as={Link}
-                to={item.link}
-                
-              >
-                <Icon color={"white"} as={item.icon} boxSize={5} mb={2} />
-                <Text color={"white"} fontSize={{ base: "xs", md: "md" }}>{item.title}</Text>
-              </Flex>
-              
-            </Tooltip>
-          ))}
+          <Flex
+            key={item.title}
+            flexDir="column"
+            align="center"
+            as={Link}
+            to={item.link}
+          >
+            <Icon color={"white"} as={item.icon} boxSize={5} mb={2} />
+            <Text color={"white"} fontSize={{ base: "xs", md: "md" }}>
+              {item.title}
+            </Text>
+          </Flex>
+        </Tooltip>
+      ))}
 
-          <Menu isLazy>
-          
-            <MenuList>
-              <MenuItem as={Link} to={"/referrals"}>
-                Referrals
-              </MenuItem>
+      <Menu isLazy>
+        <MenuList>
+          <MenuItem as={Link} to={"/referrals"}>
+            Referrals
+          </MenuItem>
 
-              <MenuItem as={Link} to={'/withdraw'}>
-                Withdrawal
-              </MenuItem>
-              <MenuItem >
-
-                </MenuItem>
-            </MenuList>
-          </Menu>
-          
-        </Flex>
+          <MenuItem as={Link} to={"/withdraw"}>
+            Withdrawal
+          </MenuItem>
+          <MenuItem></MenuItem>
+        </MenuList>
+      </Menu>
+    </Flex>
   )
 }
 export default Navbar

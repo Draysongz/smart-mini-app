@@ -21,7 +21,6 @@ const lifestyleCards = [
     perHr: 150,
     price: 3500,
   },
-
   {
     name: "Watch",
     perHr: 217,
