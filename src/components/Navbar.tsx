@@ -160,7 +160,6 @@ function Navbar({
       left={0}
       right={0}
       p={5}
-      bg={"#204d3d"}
       justifyContent="space-around"
       zIndex={1}
       bg={"rgba(0,0,0,0.4)"}
