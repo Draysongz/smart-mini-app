@@ -295,10 +295,9 @@ function Home({
             <Text color={"white"} fontSize={"25px"}>
               {coinsEarned.toLocaleString()}
             </Text>{" "}
-            *
           </Flex>
 
-          <Flex justify={"center"} mt={3}>
+          <Flex justify={"center"} mt={6}>
             <Box
               display={"flex"}
               justifyContent={"center"}

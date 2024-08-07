@@ -28,7 +28,7 @@ const Level = ({ userId, name }: LevelProps) => {
       </div>
       <div>
         <p className=" text-lg font-medium">Daily tasks</p>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)]">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)]">
           <FaGift className="w-8 h-8" />
           <div>
             <p className="font-semibold">Daily reward</p>
@@ -40,7 +40,7 @@ const Level = ({ userId, name }: LevelProps) => {
       </div>
       <div className="mt-4 pb-24">
         <p className="text-lg font-medium">Tasks list</p>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)]">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)]">
           <FaGift className="w-8 h-8" />
           <div>
             <p className="font-semibold">Activate Promo Code</p>
@@ -49,7 +49,7 @@ const Level = ({ userId, name }: LevelProps) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)] mt-3">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)] mt-3">
           <FaCoins className="w-8 h-8" />
           <div>
             <p className="font-semibold">Add 10 new friends (0/10)</p>
@@ -58,7 +58,7 @@ const Level = ({ userId, name }: LevelProps) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)] mt-3">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)] mt-3">
           <RiHandCoinFill className="w-8 h-8" />
           <div>
             <p className="font-semibold">Subscribe to X</p>
@@ -67,7 +67,7 @@ const Level = ({ userId, name }: LevelProps) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)] mt-3">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)] mt-3">
           <FaTwitter className="w-8 h-8" />
           <div>
             <p className="font-semibold">Invite to Twitter</p>
@@ -76,7 +76,7 @@ const Level = ({ userId, name }: LevelProps) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)] mt-3">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)] mt-3">
           <FaInstagram className="w-8 h-8" />
           <div>
             <p className="font-semibold">Invite to Instagram</p>
@@ -85,7 +85,7 @@ const Level = ({ userId, name }: LevelProps) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)] mt-3">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)] mt-3">
           <FaTelegram className="w-8 h-8" />
           <div>
             <p className="font-semibold">Join us on telegram</p>
@@ -94,7 +94,7 @@ const Level = ({ userId, name }: LevelProps) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center px-5 py-4 gap-4 rounded-md bg-[rgba(0,0,0,0.4)] mt-3">
+        <div className="flex items-center px-5 py-4 gap-4 rounded-[10px] bg-[rgba(0,0,0,0.4)] mt-3">
           <FaGift className="w-8 h-8" />
           <div>
             <p className="font-semibold">Add 10 new friends (0/10)</p>
