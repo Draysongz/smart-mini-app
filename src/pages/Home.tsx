@@ -298,7 +298,7 @@ function Home({
             *
           </Flex>
 
-          <Flex justify={"center"}>
+          <Flex justify={"center"} mt={3}>
             <Box
               display={"flex"}
               justifyContent={"center"}
@@ -325,7 +325,7 @@ function Home({
             </Box>
           </Flex>
 
-          <Flex align={"center"} justify={"center"} px={5}>
+          <Flex align={"center"} justify={"center"} px={5} mt={3}>
             <Box
               h={"150px"}
               w={"180px"}
