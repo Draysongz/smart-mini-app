@@ -26,12 +26,11 @@ function useRealtimeUserData(
         setName(firstName);
         setIsLoading(false);
 
-        // Set up real-time listener if referralId is defined
-        if (referralId !== undefined && referralId !== null) {
+     
           unsubscribe = setupRealtimeListener(docId, (updatedData) => {
             setUserData(updatedData);
-          });
-        }
+          
+          })
       } catch (error) {
         console.log("useRealtimeUserData", error);
       }

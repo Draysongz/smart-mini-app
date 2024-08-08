@@ -53,7 +53,7 @@ function Home({
   userId,
   name,
 }: {
-  userId: number | undefined
+  userId: number 
   name: string | null
 }) {
   const [floatingEnergy, setFloatingEnergy] = useState(0)
@@ -62,6 +62,7 @@ function Home({
   const [tappingPower, setTappingPower] = useState(0)
   const [params] = useSearchParams()
   const [rotateAnim, setRotateAnim] = useState("")
+  const [coinsPerHour, setCoinsPerHour] = useState(0)
 
   // const userId = Number(params.get("userId"))
   const referralId = Number(params.get("referralId"))
@@ -103,6 +104,7 @@ function Home({
     const timeLost = calculateLostTime()
     setCoinsEarned(() => userData.coinsEarned)
     setTappingEnergy(() => userData.tapEnergy)
+    setCoinsPerHour(()=> userData.coinsPerHour)
     const energyPerSec = userData.refillEnergy / userData.refillTime
     const energyLost: number =
       userData.floatingTapEnergy + energyPerSec * timeLost
@@ -158,13 +160,30 @@ function Home({
   //   return `+${profit}`;
   // };
 
-  // useEffect(() => {
-  //   const pointsPerSecond = Math.floor(profitPerHour / 3600);
-  //   const interval = setInterval(() => {
-  //     setPoints((prevPoints) => prevPoints + pointsPerSecond);
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, [profitPerHour]);
+ useEffect(() => {
+    if (!userData || userData.coinsPerHour == null) return;
+
+    const lostTime = calculateLostTime();
+    const pointsPerSecond = Math.floor(userData.coinsPerHour / 3600);
+    const additionalCoins = Math.floor(lostTime * pointsPerSecond);
+
+    setCoinsEarned(userData.coinsEarned + additionalCoins);
+    setCoinsPerHour(userData.coinsPerHour);
+
+    const interval = setInterval(async () => {
+      setCoinsEarned((prevPoints) => {
+        const newBalance = prevPoints + pointsPerSecond;
+
+        // Update the user balance in the database
+        updateUserData(userId, { coinsEarned: newBalance, lastUpdatedTime: Date.now() / 1000 });
+
+        return newBalance;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [userData, userId]);
+
 
   return !userData ? (
     <Flex height="100%" justify="center" overflow={"hidden"} align="center">
@@ -248,7 +267,7 @@ function Home({
                       color={"white"}
                       whiteSpace="nowrap"
                     >
-                      +1
+                      {coinsPerHour}
                     </Text>
                   </Flex>
                 </Flex>

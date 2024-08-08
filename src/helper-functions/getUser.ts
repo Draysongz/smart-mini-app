@@ -33,18 +33,18 @@ export type User = {
   userId: number
   energyLevel : number
   rechargeLevel: number
-  tapbotLevel: number
+  coinsPerHour: number
 }
 
 async function getQuerySnapshot(userId: number) {
-  const q = query(collection(db, "barni"), where("userId", "==", userId))
+  const q = query(collection(db, "smart"), where("userId", "==", userId))
   const qs = await getDocs(q)
   return qs
 }
 
 async function getUserData(userId: number, name: string, referralId?: number) {
   try {
-    const userCollectionRef = collection(db, "barni");
+    const userCollectionRef = collection(db, "smart");
     const userQuery = query(userCollectionRef, where("userId", "==", userId));
 
     // Query to get the user document snapshot
@@ -73,7 +73,7 @@ async function getUserData(userId: number, name: string, referralId?: number) {
 }
 
 function setupRealtimeListener(docId: string, callback: (data: any) => void) {
-  const userDocRef = doc(db, "barni", docId);
+  const userDocRef = doc(db, "smart", docId);
   return onSnapshot(userDocRef, (docSnapshot) => {
     if (docSnapshot.exists()) {
       const data = docSnapshot.data();
@@ -89,12 +89,12 @@ async function updateUserData(userId: number, updates: {}) {
     console.log("No user found with that ID.")
     return null // Or throw an error if preferred
   }
-  const docRef = doc(db, "barni", qs.docs[0].id)
+  const docRef = doc(db, "smart", qs.docs[0].id)
   await updateDoc(docRef, { ...updates })
 }
 
 async function createUser(userId: number, name: string) {
-  const docRef = await addDoc(collection(db, "barni"), {
+  const docRef = await addDoc(collection(db, "smart"), {
     coinsEarned: 1000,
     floatingTapEnergy: 1000,
     lastUpdatedTime: Date.now() / 1000,
@@ -109,8 +109,8 @@ async function createUser(userId: number, name: string) {
     tapEnergy: 1000,
     tapPower: 1,
     userId: userId,
-    multitapLevel: [],
-    referralLink: null
+    referralLink: null,
+    coinsPerHour: 0
 
   })
   console.log("Document written with ID: ", docRef.id)
@@ -123,7 +123,7 @@ async function updateReferralData(userId: number, referralId: number) {
       console.log("No user found with that ID.")
       return null // Or throw an error if preferred
     }
-    const docRef = doc(db, "barni", qs.docs[0].id)
+    const docRef = doc(db, "smart", qs.docs[0].id)
     await updateDoc(docRef, {
       coinsEarned: increment(3000),
       referrals: arrayUnion(userId),
