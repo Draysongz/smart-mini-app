@@ -10,7 +10,7 @@ import { useRealtimeUserData } from "../hooks/useUserData";
 
 
 interface BoostProps {
-  userId: number 
+  userId: number | undefined
   name: string | null
 }
 

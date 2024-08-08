@@ -38,7 +38,7 @@ const techCardsData = [
 ];
 
 interface TechProps {
-  userId: number;
+  userId: number | any;
   name: string | null;
 }
 

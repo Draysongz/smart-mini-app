@@ -53,7 +53,7 @@ function Home({
   userId,
   name,
 }: {
-  userId: number 
+  userId: number | any
   name: string | null
 }) {
   const [floatingEnergy, setFloatingEnergy] = useState(0)
