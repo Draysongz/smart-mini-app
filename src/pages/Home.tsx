@@ -357,7 +357,7 @@ function Home({
                 w={"60vw"}
                 display={"flex"}
               >
-                <Image alt="" src="/tap.png" width={"400px"} mt={"-10%"} />
+                <Image alt="" src="/Turbine.gif" />
               </Box>
             </Box>
           </Flex>
