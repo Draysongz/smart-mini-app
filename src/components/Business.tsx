@@ -87,7 +87,7 @@ type PropType = {
 function BusinessCard({ name, perHr, price, level, onClick }: PropType) {
   const [isLoading, setIsLoading] = useState(false)
   return (
-    <div onClick={onClick} className="cursor-pointer">
+    <div className="cursor-pointer">
       <div className="bg-[rgba(0,0,0,0.4)] w-auto rounded-xl">
         <div className="px-2 py-1 flex flex-col justify-center items-center">
           <p className="font-bold text-sm text-center pb-2 border-b-[1px] w-full">
