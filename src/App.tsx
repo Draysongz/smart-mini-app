@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, useNavigate, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -29,9 +29,17 @@ function App() {
   const referralId = 123
   // const firstName = params.get("name")
 
-  // postEvent("web_app_setup_back_button", {is_visible: true})
+
 
   WebApp.BackButton.isVisible = true
+
+const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  const goBack = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
+
+  WebApp.BackButton.onClick(goBack)
 
   const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
