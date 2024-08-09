@@ -4,6 +4,7 @@ import { FiRefreshCcw } from "react-icons/fi"
 import { FaRegCopy } from "react-icons/fa6"
 import { IoMdPersonAdd } from "react-icons/io"
 import WebApp from "@twa-dev/sdk"
+import { PostEvent, postEvent } from "@telegram-apps/sdk"
 
 const Ref = ({
   userId,
@@ -25,16 +26,16 @@ const Ref = ({
   }
 
 
+
+
   const sendInline = async ()=>{
     try {
-    WebApp.switchInlineQuery(
-    "https://t.me/battle_games_com_bot/start?startapp=frndId2146305061 \n🔥 Hello! Did you miss hNOT or Hamster Kombat? Do not miss BATTLE BULLS — a free mobile PLAY-2-EARN game! \n⚡️ Players can earn game euros and convert them into REAL tokens after the AIRDROP on September 2!",
-    [
-      "users",
+  postEvent("web_app_switch_inline_query",{
+    query:  "https://t.me/battle_games_com_bot/start?startapp=frndId2146305061 \n🔥 Hello! Did you miss hNOT or Hamster Kombat? Do not miss BATTLE BULLS — a free mobile PLAY-2-EARN game! \n⚡️ Players can earn game euros and convert them into REAL tokens after the AIRDROP on September 2!",
+    chat_types: [ "users",
       "groups",
-      "channels"
-    ]
-  )
+      "channels"]
+  } )
     } catch (error) {
       console.log(error);
     }
