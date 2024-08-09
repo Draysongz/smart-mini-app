@@ -12,7 +12,6 @@ import { ContextProvdider } from "./context/ContextProvider"
 import Level from "./components/Level"
 import Stats from "./pages/Stats"
 import Boost from "./pages/Boost"
-// import { postEvent } from '@telegram-apps/sdk';
 import WebApp from "@twa-dev/sdk"
 
 
@@ -66,13 +65,15 @@ interface BoostProps {
 }
 
 function AppContent({ userId, name }:BoostProps) {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
 
 
     const goBack = () => {
       navigate(-1); // Navigate back to the previous page
     }
+
+    WebApp.BackButton.isVisible = true
 
     WebApp.BackButton.onClick(goBack)
 
