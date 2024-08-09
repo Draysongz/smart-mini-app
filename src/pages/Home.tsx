@@ -175,7 +175,7 @@ function Home({
         const newBalance = prevPoints + pointsPerSecond;
 
         // Update the user balance in the database
-        updateUserData(userId, { coinsEarned: newBalance, lastUpdatedTime: Date.now() / 1000 });
+        updateUserData(userId, { coinsEarned: newBalance });
 
         return newBalance;
       });

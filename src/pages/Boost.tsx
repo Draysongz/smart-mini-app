@@ -53,8 +53,8 @@ const Boost = ({ userId, name }: BoostProps) => {
 
       {/** cards */}
       {activeTab == 0 && <Technology userId={userId} name={name} />}
-      {activeTab == 1 && <Lifestyle />}
-      {activeTab == 2 && <Business />}
+      {activeTab == 1 && <Lifestyle userId={userId} name={name} />}
+      {activeTab == 2 && <Business userId={userId} name={name} />}
 
       <Navbar userId={userId} name={name} />
     </div>
