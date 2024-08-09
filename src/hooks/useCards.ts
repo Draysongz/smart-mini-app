@@ -10,7 +10,7 @@ export function useCards(category: string, userId: number | undefined) {
   useEffect(() => {
     async function getCards() {
       if (!userId) return
-      setCards([])
+      setCards(() => [])
       try {
         const cardQs = await getCardsByCategory(category)
 

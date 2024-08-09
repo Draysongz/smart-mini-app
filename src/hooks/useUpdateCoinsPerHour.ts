@@ -1,6 +1,6 @@
 import { DocumentData, doc, arrayRemove, arrayUnion } from "firebase/firestore"
 import { Dispatch, SetStateAction, useState } from "react"
-import { toast } from "react-toastify"
+import Toastify from "toastify-js"
 import { db } from "../firebase/firebase"
 import { getCard } from "../helper-functions/cards"
 import { updateUserData } from "../helper-functions/getUser"
@@ -20,7 +20,16 @@ export function useUpdateCoinsPerHour() {
     if (!userId) return
 
     if (price > userData?.coinsEarned) {
-      toast.error("Insufficient coins")
+      Toastify({
+        text: "insufficient coins",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        stopOnFocus: false,
+        style: {
+          background: "rgba(225,0,0,0.7)",
+        },
+      }).showToast()
       return
     }
 
@@ -39,7 +48,16 @@ export function useUpdateCoinsPerHour() {
     const updateCards = [...cards]
     updateCards[index].level += 1
     setCards(updateCards)
-    toast.success("card purchased")
+    Toastify({
+      text: "Card purchased",
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      stopOnFocus: false,
+      style: {
+        background: "rgba(0,0,0,0.5)",
+      },
+    }).showToast()
     setIsLoading(false)
   }
 
