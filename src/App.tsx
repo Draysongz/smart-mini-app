@@ -11,29 +11,29 @@ import Level from "./components/Level"
 import Stats from "./pages/Stats"
 import Boost from "./pages/Boost"
 import Home from "./pages/Home"
-import "toastify-js/src/toastify.css"
-function App() {
-  // const [userId, setUserId] = useState<number>()
-  // const [firstName, setFirstName] = useState<string | null>(null)
-  // const params = new URLSearchParams(location.search)
-  // const referralId = Number(params.get("referralId"))
 
-  const userId = 2146305061
-  const firstName = "habibilord"
+function App() {
+  const [userId, setUserId] = useState<number>()
+  const [firstName, setFirstName] = useState<string | null>(null)
+  const params = new URLSearchParams(location.search)
+  const referralId = Number(params.get("referralId"))
+
+  // const userId = 2146305061
+  // const firstName = "habibilord"
   // console.log(referralId)
-  const referralId = 123
+  // const referralId = 123
   // const firstName = params.get("name")
 
   const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
-  // useEffect(() => {
-  //   WebApp.expand()
-  //   const id = WebApp.initDataUnsafe.user?.id
-  //   const name = WebApp.initDataUnsafe.user?.first_name || null
-  //   if (!id && !name) return
-  //   setUserId(id)
-  //   setFirstName(name)
-  // }, [])
+  useEffect(() => {
+    WebApp.expand()
+    const id = WebApp.initDataUnsafe.user?.id
+    const name = WebApp.initDataUnsafe.user?.first_name || null
+    if (!id && !name) return
+    setUserId(id)
+    setFirstName(name)
+  }, [])
 
   if (isLoading) {
     return <Spinner />
