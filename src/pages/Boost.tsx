@@ -7,7 +7,7 @@ import Lifestyle from "../components/Lifestyle"
 import Business from "../components/Business"
 import { useRealtimeUserData } from "../hooks/useUserData"
 // import { useSearchParams } from "react-router-dom";
-import "toastify-js/src/toastify.css"
+
 interface BoostProps {
   userId: number | undefined
   name: string | null

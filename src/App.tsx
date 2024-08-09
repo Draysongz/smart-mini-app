@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
 import Ref from "./components/Ref"
 import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
