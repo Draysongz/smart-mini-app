@@ -2,7 +2,6 @@ import { lazy } from "react"
 import { BrowserRouter, useNavigate, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-
 import Ref from "./components/Ref"
 import { useStaticUserData } from "./hooks/useUserData"
 import Spinner from "./components/Spinner"
@@ -20,13 +19,14 @@ const Home = lazy(() => import("./pages/Home"))
 function App() {
   // const [userId, setUserId] = useState<number | 0>()
   // const [firstName, setFirstName] = useState<string | null>(null)
-  // const params = new URLSearchParams(location.search)
-  // const referralId = Number(params.get("referralId"))
+  const params = new URLSearchParams(location.search)
+  const referralId = Number(params.get("referralId"))
 
 
   const userId = 2146305061
   const firstName = "habibilord"
-  const referralId = 123
+  console.log(referralId)
+  // const referralId = 123
   // const firstName = params.get("name")
 
 

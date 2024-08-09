@@ -79,7 +79,7 @@ function Referral({
   function handleCopy() {
     try {
       navigator.clipboard.writeText(
-        `https://t.me/BarnicoinBot/?start=${userId}`
+        `https://t.me/Greensmart_bot/?start=${userId}`
       )
     } catch (err) {
       console.log(err)
@@ -95,7 +95,7 @@ function Referral({
           <h1 className="text-2xl text-center">{referredUsers?.length} Referrals</h1>
           <p className="pl-4 pb-4 pt-8">My referral link:</p>
           <div className="border px-2 py-2 w-11/12 border-[#1d1d1d] bg-[#282828] mx-auto flex justify-between rounded-md">
-            <p className="text-gray-400 pt-2 pl-2">https://t.me/BarnicoinBot...</p>
+            <p className="text-gray-400 pt-2 pl-2">https://t.me/Greensmart_bot...</p>
             <button className="flex border border-[#282828] px-2 py-2 bg-[#fbc347] rounded-md mr-1 text-black" onClick={handleCopy}><img src={"/clip.svg"} width={18} height={18} className="mr-1 mt-1" />Copy</button>
           </div>
           <p className="pt-1 pl-4 text-gray-400 pb-12">How referral levels work? <a href={"/reflevel"} className="text-[#fbc347] underline">Check</a></p>
