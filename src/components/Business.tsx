@@ -104,7 +104,14 @@ function BusinessCard({ name, perHr, price, level, onClick }: PropType) {
           </div>
         </div>
 
-        <div className="bg-[rgba(0,0,0,0.5)] rounded-xl h-14 flex justify-center items-center gap-2">
+        <div
+          className="bg-[rgba(0,0,0,0.5)] rounded-xl h-14 flex justify-center items-center gap-2"
+          onClick={async () => {
+            setIsLoading(true)
+            await onClick()
+            setIsLoading(false)
+          }}
+        >
           {isLoading ? (
             <ClipLoader color="#fff" />
           ) : (

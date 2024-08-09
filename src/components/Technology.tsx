@@ -115,20 +115,20 @@ function TechnologyCard({
             <p className="text-yellow-400 font-bold text-sm">+{perHr}</p>
           </div>
         </div>
-        <div className="bg-[rgba(0,0,0,0.5)] rounded-xl h-14 flex justify-center items-center gap-2">
+        <div
+          className="bg-[rgba(0,0,0,0.5)] rounded-xl h-14 flex justify-center items-center gap-2"
+          onClick={async () => {
+            setIsLoading(true)
+            await onClick()
+            setIsLoading(false)
+          }}
+        >
           {isLoading ? (
             <ClipLoader color="#fff" />
           ) : (
             <>
               <ImCoinEuro className="text-yellow-400 font-bold" />
-              <button
-                onClick={async () => {
-                  setIsLoading(true)
-                  await onClick()
-                  setIsLoading(false)
-                }}
-                className="text-yellow-400 font-bold text-sm"
-              >
+              <button className="text-yellow-400 font-bold text-sm">
                 {price}
               </button>
             </>
