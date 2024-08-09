@@ -24,22 +24,12 @@ function App() {
   // const params = new URLSearchParams(location.search)
   // const referralId = Number(params.get("referralId"))
 
+
   const userId = 2146305061
   const firstName = "habibilord"
   const referralId = 123
   // const firstName = params.get("name")
 
-
-
-  WebApp.BackButton.isVisible = true
-
-const navigate = useNavigate(); // Initialize the useNavigate hook
-
-  const goBack = () => {
-    navigate(-1); // Navigate back to the previous page
-  };
-
-  WebApp.BackButton.onClick(goBack)
 
   const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
@@ -56,35 +46,58 @@ const navigate = useNavigate(); // Initialize the useNavigate hook
     return <Spinner />
   }
   return (
-    <ContextProvdider
+        <ContextProvdider
       userId={userId}
       firstName={firstName}
       referralId={referralId}
     >
       <BrowserRouter>
-        <Routes>
-          <Route index element={<Home userId={userId} name={name} />} />
-          <Route
-            path="/referral"
-            element={<Ref userId={userId} name={name} />}
-          />
-          <Route
-            path="/boost"
-            element={<Boost userId={userId} name={name} />}
-          />
-          <Route
-            path="/tasks"
-            element={<Level userId={userId} name={name} />}
-          />
-          <Route
-            path="/airdrop"
-            element={<Stats userId={userId} name={name} />}
-          />
-        </Routes>
+        <AppContent userId={userId} name={name} />
       </BrowserRouter>
       <ToastContainer />
     </ContextProvdider>
   )
 }
+
+
+interface BoostProps {
+  userId: number | undefined
+  name: string | null
+}
+
+function AppContent({ userId, name }:BoostProps) {
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
+
+
+    const goBack = () => {
+      navigate(-1); // Navigate back to the previous page
+    }
+
+    WebApp.BackButton.onClick(goBack)
+
+  return (
+    <Routes>
+      <Route index element={<Home userId={userId} name={name} />} />
+      <Route
+        path="/referral"
+        element={<Ref userId={userId} name={name} />}
+      />
+      <Route
+        path="/boost"
+        element={<Boost userId={userId} name={name} />}
+      />
+      <Route
+        path="/tasks"
+        element={<Level userId={userId} name={name} />}
+      />
+      <Route
+        path="/airdrop"
+        element={<Stats userId={userId} name={name} />}
+      />
+    </Routes>
+  )
+}
+
 
 export default App
