@@ -314,7 +314,7 @@ function Home({
           <Flex align={"center"} justify={"center"} gap={2}>
             <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
             <Text color={"white"} fontSize={"25px"}>
-              {coinsEarned.toFixed(0).toLocaleString()}
+              {Number(coinsEarned.toFixed(0)).toLocaleString()}
             </Text>{" "}
           </Flex>
 
