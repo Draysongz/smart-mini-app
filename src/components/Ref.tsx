@@ -3,6 +3,7 @@ import { FaGift } from "react-icons/fa6"
 import { FiRefreshCcw } from "react-icons/fi"
 import { FaRegCopy } from "react-icons/fa6"
 import { IoMdPersonAdd } from "react-icons/io"
+import { postEvent } from "@telegram-apps/sdk"
 
 const Ref = ({
   userId,
@@ -11,6 +12,35 @@ const Ref = ({
   userId: number | undefined
   name: string | null
 }) => {
+
+
+    function handleCopy() {
+    try {
+      navigator.clipboard.writeText(
+        `https://t.me/Greensmart_bot/?start=${userId}`
+      )
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
+
+
+  const sendInline = async ()=>{
+    try {
+  postEvent("web_app_switch_inline_query",{
+    query:  "\nhttps://t.me/Greensmart_bot/start?startapp=frndId2146305061 \n\n🔥 Hello! Did you miss hNOT or Hamster Kombat? Do not miss BATTLE BULLS — a free mobile PLAY-2-EARN game! \n\n⚡️ Players can earn game euros and convert them into REAL tokens after the AIRDROP on September 2!",
+    chat_types: [ "users",
+      "groups",
+      "channels"]
+  },
+)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="bg-[#204d3d] relative px-4 text-white h-full min-h-screen">
       <h1 className="pt-16 text-center text-3xl font-semibold">
@@ -56,11 +86,11 @@ const Ref = ({
       </div>
       <div className="w-full animate-bounce left-0 bottom-24 absolute flex justify-center px-4">
         <div className="flex w-full gap-2">
-          <button className="w-full py-2 flex justify-center rounded-[10px] mx-auto bg-[rgba(0,0,0,0.4)]">
+          <button className="w-full py-2 flex justify-center rounded-[10px] mx-auto bg-[rgba(0,0,0,0.4)]" onClick={sendInline}>
             <IoMdPersonAdd className="w-5 h-5 mt-0.5" />
             Invite a Friend
           </button>
-          <div className="flex items-center px-3 rounded-[10px] bg-[rgba(0,0,0,0.4)]">
+          <div className="flex items-center px-3 rounded-[10px] bg-[rgba(0,0,0,0.4)]" onClick={handleCopy}>
             <FaRegCopy />
           </div>
         </div>

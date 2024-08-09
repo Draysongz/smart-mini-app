@@ -175,10 +175,14 @@ function Home({
         const newBalance = prevPoints + pointsPerSecond
 
         // Update the user balance in the database
+<<<<<<< HEAD
         updateUserData(userId, {
           coinsEarned: newBalance,
           lastUpdatedTime: Date.now() / 1000,
         })
+=======
+        updateUserData(userId, { coinsEarned: newBalance });
+>>>>>>> 9c377bde27df99dfa03b346ba05e4daee801c82e
 
         return newBalance
       })
