@@ -53,7 +53,7 @@ function Home({
   userId,
   name,
 }: {
-  userId: number | any
+  userId: number | undefined
   name: string | null
 }) {
   const [floatingEnergy, setFloatingEnergy] = useState(0)
@@ -99,12 +99,18 @@ function Home({
     setScreenAxis(screenAxis.filter((screen) => screen.id !== id))
   }
 
+  const calculateLostTime = (): number => {
+    const lastUpdate = userData?.lastUpdatedTime
+    const timeNowInSeconds = Date.now() / 1000
+    return timeNowInSeconds - lastUpdate
+  }
+
   useEffect(() => {
     if (!userData) return
     const timeLost = calculateLostTime()
     setCoinsEarned(() => userData.coinsEarned)
     setTappingEnergy(() => userData.tapEnergy)
-    setCoinsPerHour(()=> userData.coinsPerHour)
+    setCoinsPerHour(() => userData.coinsPerHour)
     const energyPerSec = userData.refillEnergy / userData.refillTime
     const energyLost: number =
       userData.floatingTapEnergy + energyPerSec * timeLost
@@ -146,13 +152,6 @@ function Home({
     })()
     return () => {}
   }, [floatingEnergy, userId])
-
-  const calculateLostTime = (): number => {
-    const lastUpdate = userData?.lastUpdatedTime
-    const timeNowInSeconds = Date.now() / 1000
-    return timeNowInSeconds - lastUpdate
-  }
-
   //   const formatProfitPerHour = (profit: number) => {
   //   if (profit >= 1000000000) return `+${(profit / 1000000000).toFixed(2)}B`;
   //   if (profit >= 1000000) return `+${(profit / 1000000).toFixed(2)}M`;
@@ -160,30 +159,33 @@ function Home({
   //   return `+${profit}`;
   // };
 
- useEffect(() => {
-    if (!userData || userData.coinsPerHour == null) return;
+  useEffect(() => {
+    if (!userData) return
 
-    const lostTime = calculateLostTime();
-    const pointsPerSecond = Math.floor(userData.coinsPerHour / 3600);
-    const additionalCoins = Math.floor(lostTime * pointsPerSecond);
+    const lostTime = calculateLostTime()
+    const pointsPerSecond = userData.coinsPerHour / 3600
+    const additionalCoins = lostTime * pointsPerSecond
 
-    setCoinsEarned(userData.coinsEarned + additionalCoins);
-    setCoinsPerHour(userData.coinsPerHour);
+    setCoinsEarned(userData.coinsEarned + additionalCoins)
+    // setCoinsPerHour(userData.coinsPerHour)
 
     const interval = setInterval(async () => {
+      if (!userId) return
       setCoinsEarned((prevPoints) => {
-        const newBalance = prevPoints + pointsPerSecond;
+        const newBalance = prevPoints + pointsPerSecond
 
         // Update the user balance in the database
-        updateUserData(userId, { coinsEarned: newBalance, lastUpdatedTime: Date.now() / 1000 });
+        updateUserData(userId, {
+          coinsEarned: newBalance,
+          lastUpdatedTime: Date.now() / 1000,
+        })
 
-        return newBalance;
-      });
-    }, 1000);
+        return newBalance
+      })
+    }, 1000)
 
-    return () => clearInterval(interval);
-  }, [userData, userId]);
-
+    return () => clearInterval(interval)
+  }, [userData, userId])
 
   return !userData ? (
     <Flex height="100%" justify="center" overflow={"hidden"} align="center">
@@ -312,7 +314,7 @@ function Home({
           <Flex align={"center"} justify={"center"} gap={2}>
             <Image alt="coin" src="/coin.svg" w={"40px"} h={"40px"} />
             <Text color={"white"} fontSize={"25px"}>
-              {coinsEarned.toLocaleString()}
+              {coinsEarned.toFixed(0).toLocaleString()}
             </Text>{" "}
           </Flex>
 

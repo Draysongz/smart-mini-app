@@ -1,4 +1,3 @@
-import { lazy } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -12,11 +11,10 @@ import { useEffect, useState } from "react"
 import Level from "./components/Level"
 import Stats from "./pages/Stats"
 import Boost from "./pages/Boost"
+import Home from "./pages/Home"
 
-
-const Home = lazy(() => import("./pages/Home"))
 function App() {
-  const [userId, setUserId] = useState<number | 0>()
+  const [userId, setUserId] = useState<number>()
   const [firstName, setFirstName] = useState<string | null>(null)
   const params = new URLSearchParams(location.search)
   const referralId = Number(params.get("referralId"))

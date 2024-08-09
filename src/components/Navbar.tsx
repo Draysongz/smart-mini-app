@@ -170,14 +170,9 @@ function Navbar({
           label={`${index == 1 ? "Coming soon" : ""}`}
           hasArrow={index == 1 ? true : false}
           placement="top"
+          key={item.title}
         >
-          <Flex
-            key={item.title}
-            flexDir="column"
-            align="center"
-            as={Link}
-            to={item.link}
-          >
+          <Flex flexDir="column" align="center" as={Link} to={item.link}>
             <Icon color={"white"} as={item.icon} boxSize={5} mb={2} />
             <Text color={"white"} fontSize={{ base: "xs", md: "md" }}>
               {item.title}

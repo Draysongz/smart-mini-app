@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   getFirestore,
   collection,
@@ -10,11 +11,9 @@ import {
   arrayUnion,
   FieldValue,
   increment,
-  onSnapshot
-  
+  onSnapshot,
 } from "firebase/firestore"
 import { app } from "../firebase/firebase"
-
 
 const db = getFirestore(app)
 
@@ -31,7 +30,7 @@ export type User = {
   tapEnergy: number
   tapPower: number
   userId: number
-  energyLevel : number
+  energyLevel: number
   rechargeLevel: number
   coinsPerHour: number
 }
@@ -44,42 +43,51 @@ async function getQuerySnapshot(userId: number) {
 
 async function getUserData(userId: number, name: string, referralId?: number) {
   try {
-    const userCollectionRef = collection(db, "smart");
-    const userQuery = query(userCollectionRef, where("userId", "==", userId));
+    const userCollectionRef = collection(db, "smart")
+    const userQuery = query(userCollectionRef, where("userId", "==", userId))
 
     // Query to get the user document snapshot
-    const querySnapshot = await getDocs(userQuery);
+    const querySnapshot = await getDocs(userQuery)
 
     if (querySnapshot.empty) {
       // User does not exist, create it
-      await createUser(userId, name);
-      const newUserQuerySnapshot = await getDocs(userQuery);
-      const newUserDoc = newUserQuerySnapshot.docs[0];
+      await createUser(userId, name)
+      const newUserQuerySnapshot = await getDocs(userQuery)
+      const newUserDoc = newUserQuerySnapshot.docs[0]
       if (referralId && referralId !== userId) {
-        await updateReferralData(userId, referralId);
+        await updateReferralData(userId, referralId)
       }
-      const newData = newUserDoc.data();
-      return { data: newData, docId: newUserDoc.id };
+      const newData = newUserDoc.data()
+      return { data: newData, docId: newUserDoc.id }
     } else {
       // User exists, return initial data
-      const userDoc = querySnapshot.docs[0];
-      const userData = userDoc.data();
-      return { data: userData, docId: userDoc.id };
+      const userDoc = querySnapshot.docs[0]
+      const userData = userDoc.data()
+      return { data: userData, docId: userDoc.id }
     }
   } catch (err) {
-    console.log(err);
-    return null;
+    console.log(err)
+    return null
   }
 }
 
+async function getUserLevelData(userId: number) {
+  const userCollectionRef = collection(db, "smart")
+  const userQuery = query(userCollectionRef, where("userId", "==", userId))
+  const querySnapshot = await getDocs(userQuery)
+  const userDoc = querySnapshot.docs[0]
+  const userData = userDoc.data()
+  return userData.cardLevels
+}
+
 function setupRealtimeListener(docId: string, callback: (data: any) => void) {
-  const userDocRef = doc(db, "smart", docId);
+  const userDocRef = doc(db, "smart", docId)
   return onSnapshot(userDocRef, (docSnapshot) => {
     if (docSnapshot.exists()) {
-      const data = docSnapshot.data();
-      callback(data);
+      const data = docSnapshot.data()
+      callback(data)
     }
-  });
+  })
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -98,7 +106,7 @@ async function createUser(userId: number, name: string) {
     coinsEarned: 1000,
     floatingTapEnergy: 1000,
     lastUpdatedTime: Date.now() / 1000,
-    energyLevel : 1,
+    energyLevel: 1,
     rechargeLevel: 1,
     tapbotLevel: 1,
     name,
@@ -110,8 +118,7 @@ async function createUser(userId: number, name: string) {
     tapPower: 1,
     userId: userId,
     referralLink: null,
-    coinsPerHour: 0
-
+    coinsPerHour: 0,
   })
   console.log("Document written with ID: ", docRef.id)
 }
@@ -133,4 +140,10 @@ async function updateReferralData(userId: number, referralId: number) {
   }
 }
 
-export { getUserData, updateUserData, getQuerySnapshot, setupRealtimeListener }
+export {
+  getUserData,
+  updateUserData,
+  getQuerySnapshot,
+  setupRealtimeListener,
+  getUserLevelData,
+}
