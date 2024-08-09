@@ -30,7 +30,7 @@ const Ref = ({
   const sendInline = async ()=>{
     try {
   postEvent("web_app_switch_inline_query",{
-    query:  "https://t.me/battle_games_com_bot/start?startapp=frndId2146305061 \n🔥 Hello! Did you miss hNOT or Hamster Kombat? Do not miss BATTLE BULLS — a free mobile PLAY-2-EARN game! \n⚡️ Players can earn game euros and convert them into REAL tokens after the AIRDROP on September 2!",
+    query:  "https://t.me/Greensmart_bot/start?startapp=frndId2146305061 \n\n🔥 Hello! Did you miss hNOT or Hamster Kombat? Do not miss BATTLE BULLS — a free mobile PLAY-2-EARN game! \n\n⚡️ Players can earn game euros and convert them into REAL tokens after the AIRDROP on September 2!",
     chat_types: [ "users",
       "groups",
       "channels"]
