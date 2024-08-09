@@ -3,8 +3,7 @@ import { FaGift } from "react-icons/fa6"
 import { FiRefreshCcw } from "react-icons/fi"
 import { FaRegCopy } from "react-icons/fa6"
 import { IoMdPersonAdd } from "react-icons/io"
-import WebApp from "@twa-dev/sdk"
-import { PostEvent, postEvent } from "@telegram-apps/sdk"
+import { postEvent } from "@telegram-apps/sdk"
 
 const Ref = ({
   userId,
