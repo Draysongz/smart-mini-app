@@ -12,15 +12,10 @@ import { ContextProvdider } from "./context/ContextProvider"
 import Level from "./components/Level"
 import Stats from "./pages/Stats"
 import Boost from "./pages/Boost"
+// import { postEvent } from '@telegram-apps/sdk';
+import WebApp from "@twa-dev/sdk"
 
-const data = JSON.stringify({
-  eventType: 'web_app_setup_back_button',
-  eventData: {
-    is_visible: true,
-  },
-});
 
-window.parent.postMessage(data, 'https://web.telegram.org');
 
 const Home = lazy(() => import("./pages/Home"))
 function App() {
@@ -33,6 +28,10 @@ function App() {
   const firstName = "habibilord"
   const referralId = 123
   // const firstName = params.get("name")
+
+  // postEvent("web_app_setup_back_button", {is_visible: true})
+
+  WebApp.BackButton.isVisible = true
 
   const { isLoading, name } = useStaticUserData(userId, firstName, referralId)
 
