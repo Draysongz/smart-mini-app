@@ -115,14 +115,7 @@ function LifestyleCard({ name, perHr, price, level, onClick }: PropType) {
           ) : (
             <>
               <ImCoinEuro className="text-yellow-400 font-bold" />
-              <button
-                onClick={async () => {
-                  setIsLoading(true)
-                  await onClick()
-                  setIsLoading(false)
-                }}
-                className="text-yellow-400 font-bold text-sm"
-              >
+              <button className="text-yellow-400 font-bold text-sm">
                 {price}
               </button>
             </>
