@@ -63,13 +63,14 @@ function AppContent({ userId, name }: BoostProps) {
     navigate(-1) // Navigate back to the previous page
   }
 
-  WebApp.BackButton.isVisible = true
+  
 
   useEffect(()=>{
     const path = location.pathname
-    if(path == '/'){
+    if(path == "/"){
     WebApp.BackButton.isVisible = false
-      WebApp.MainButton.isVisible= true
+    }else{
+      WebApp.BackButton.isVisible = true
     }
   }, [])
 
