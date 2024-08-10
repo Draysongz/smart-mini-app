@@ -65,6 +65,14 @@ function AppContent({ userId, name }: BoostProps) {
 
   WebApp.BackButton.isVisible = true
 
+  useEffect(()=>{
+    const path = location.pathname
+    if(path == '/'){
+    WebApp.BackButton.isVisible = false
+      WebApp.MainButton.isVisible= true
+    }
+  }, [])
+
   WebApp.BackButton.onClick(goBack)
 
   return (
